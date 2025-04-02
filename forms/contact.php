@@ -1,30 +1,41 @@
 <?php
+// Importa os arquivos diretamente
+require '../phpmailer/PHPMailer.php';
+require '../phpmailer/SMTP.php';
+require '../phpmailer/Exception.php';
 
-// Captura os dados do formulário
-$name = $_POST['name'];
-$email = $_POST['email'];
-$subject = $_POST['subject'];
-$message = $_POST['message'];
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-// Define o destinatário (troque para o seu e-mail real)
-$to = "arielsdias@gmail.com";
+$mail = new PHPMailer(true);
 
-// Cria o corpo da mensagem
-$body = "Você recebeu uma nova mensagem de contato:\n\n";
-$body .= "Nome: $name\n";
-$body .= "E-mail: $email\n";
-$body .= "Assunto: $subject\n";
-$body .= "Mensagem:\n$message\n";
+try {
+    // Configurações do servidor SMTP do UOL Host
+    $mail->isSMTP();
+    $mail->Host       = 'smtps.uol.com.br';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'contato@arieldias.com.br'; // seu e-mail UOL
+    $mail->Password   = 'mC$u-G6w';     // senha do e-mail
+    $mail->SMTPSecure = 'tls'; // ou 'ssl'
+    $mail->Port       = 587;   // ou 465 para SSL
 
-// Cabeçalhos
-$headers = "From: $email\r\n";
-$headers .= "Reply-To: $email\r\n";
+    // Dados do formulário
+    $name    = $_POST['name'];
+    $email   = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
 
-// Envia o e-mail
-if (mail($to, $subject, $body, $headers)) {
-  echo "OK";
-} else {
-  http_response_code(500);
-  echo "Erro ao enviar o e-mail.";
+    // Configurações do e-mail
+    $mail->setFrom('contato@arieldias.com.br', 'Formulário do site');
+    $mail->addAddress('contato@arieldias.com.br');
+    $mail->addReplyTo($email, $name);
+
+    $mail->Subject = $subject;
+    $mail->Body    = "Nome: $name\nE-mail: $email\n\nMensagem:\n$message";
+
+    $mail->send();
+    echo "OK";
+} catch (Exception $e) {
+    http_response_code(500);
+    echo "Erro ao enviar: {$mail->ErrorInfo}";
 }
-?>
