@@ -1,8 +1,8 @@
 <?php
 // Importa os arquivos diretamente
-require '../phpmailer/PHPMailer.php';
-require '../phpmailer/SMTP.php';
-require '../phpmailer/Exception.php';
+require '../src/PHPMailer.php';
+require '../src/SMTP.php';
+require '../src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
