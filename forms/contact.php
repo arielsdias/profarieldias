@@ -16,8 +16,8 @@ try {
     $mail->SMTPAuth   = true;
     $mail->Username   = 'contato@arieldias.com.br'; // seu e-mail UOL
     $mail->Password   = 'mC$u-G6w';     // senha do e-mail
-    $mail->SMTPSecure = 'tls'; // ou 'ssl'
-    $mail->Port       = 587;   // ou 465 para SSL
+    $mail->SMTPSecure = 'ssl'; // ou 'ssl'
+    $mail->Port       = 465;   // ou 465 para SSL
 
     // Dados do formulário
     $name    = $_POST['name'];
