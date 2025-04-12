@@ -12,7 +12,7 @@ $mail = new PHPMailer(true);
 try {
     // Configurações do servidor SMTP do UOL Host
     $mail->isSMTP();
-    $mail->Host       = 'smtps.uol.com.br';
+    $mail->Host       = 'smtp.uol.com.br';
     $mail->SMTPAuth   = true;
     $mail->Username   = 'contato@arieldias.com.br'; // seu e-mail UOL
     $mail->Password   = 'mC$u-G6w';     // senha do e-mail
