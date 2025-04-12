@@ -26,8 +26,8 @@ try {
     $message = $_POST['message'];
 
     // Configurações do e-mail
-    $mail->setFrom('contato@arieldias.com.br', 'Formulário do site');
-    $mail->addAddress('contato@arieldias.com.br');
+    $mail->setFrom('professor@arieldias.com.br', 'Formulário do site');
+    $mail->addAddress('professor@arieldias.com.br');
     $mail->addReplyTo($email, $name);
 
     $mail->Subject = $subject;
