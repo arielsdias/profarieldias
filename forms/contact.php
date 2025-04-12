@@ -12,12 +12,12 @@ $mail = new PHPMailer(true);
 try {
     // Configurações do servidor SMTP do UOL Host
     $mail->isSMTP();
-    $mail->Host       = 'smtp.uol.com.br';
+    $mail->Host       = 'smtps.uol.com.br';
     $mail->SMTPAuth   = true;
     $mail->Username   = 'professor@arieldias.com.br'; // seu e-mail UOL
     $mail->Password   = '051283Y&l';     // senha do e-mail
-    $mail->SMTPSecure = 'ssl'; // ou 'ssl'
-    $mail->Port       = 465;   // ou 465 para SSL
+    $mail->SMTPSecure = 'tls'; // ou 'ssl'
+    $mail->Port       = 587;   // ou 465 para SSL
 
     // Dados do formulário
     $name    = $_POST['name'];
