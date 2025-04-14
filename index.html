@@ -31,6 +31,23 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    .highlight-storytelling {
+      background-color: #ff5722;
+      color: #fff !important;
+      font-weight: bold;
+      border-radius: 20px;
+      padding: 8px 16px;
+      transition: all 0.3s ease;
+    }
+  
+    .highlight-storytelling:hover {
+      background-color: #e64a19;
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+  
 
 </head>
 
@@ -47,9 +64,10 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#index" class="active">Home</a></li>
-          <li><a href="#about">Sobre</a></li>
-          <li><a href="#resume">Resumo</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
+<!--          <li><a href="#storytelling" class="highlight-storytelling">Curso Storytelling</a></li>-->
+          <li><a href="#storytelling">Curso Storytelling</a></li>
+          <li><a href="#about">Currículo</a></li>
           <li><a href="#portfolio">Portfólio</a></li>
           <li><a href="index.html#services">Serviços</a></li>
        
@@ -86,6 +104,8 @@
     </div>
   </header>
 
+
+
   <main class="main">
 
     <!-- Hero Section -->
@@ -98,8 +118,9 @@
             <h2>Seja protagonista do seu aprendizado</h2>
             <p class="lead">Conceitos complexos transformados em conteúdos acessíveis e dinâmicos, garantindo impacto e engajamento</p>
             <div class="cta-buttons" data-aos="fade-up" data-aos-delay="300">
-              <a href="#portfolio" class="btn btn-primary">Conheça meu trabalho</a>
-              <a href="#contact" class="btn btn-outline">Vamos nos conectar?</a>
+              <a href="#about" class="btn btn-primary"> Sobre mim</a>
+              <a href="service-details.html" class="btn btn-outline">Curso Storytelling</a>
+              
             </div>
             <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
               <div class="stat-item">
@@ -118,7 +139,7 @@
           </div>
           <div class="col-lg-6">
             <div class="hero-image">
-              <img src="assets/img/profile/profile-1.webp" alt="Portfolio Hero Image" class="img-fluid" data-aos="zoom-out" data-aos-delay="300">
+              <img src="assets/img/profile/profile-2.png" alt="Portfolio Hero Image" class="img-fluid" data-aos="zoom-out" data-aos-delay="300">
               <div class="shape-1"></div>
               <div class="shape-2"></div>
             </div>
@@ -218,23 +239,30 @@
                       <span class="value">22 Meias maratonas</span>
                     </div>
                   </div>
+                  
                 </div>
+                
               </div>
 
-              <!--<div class="signature mt-4">
-                <div class="signature-image">
-                  <img src="assets/img/misc/signature-1.webp" alt="" class="img-fluid">
-                </div>
-                <div class="signature-info">
-                  <h4>Ariel Dias</h4>
-                  <p>Professor e autor</p>
-                </div>-->
+              <div class="mt-4 p-4 rounded-4 shadow-sm" style="background-color: #f4f9ff; border-left: 6px solid #FF5722;">
+                <h3 style="color: #FF5722; font-size: 1.25rem; font-weight: 600;">Quer conhecer minha trajetória profissional?</h3>
+                <p style="margin-bottom: 10px; font-size: 1rem; color: #444;">
+                  Veja minha experiência acadêmica e profissional com mais profundidade.
+                </p>
+                <a href="curriculo.html" class="btn btn-sm" style="background-color: #FF5722; color: white; font-weight: 500; border-radius: 30px; padding: 10px 22px; text-decoration: none;">
+                  Acesse meu currículo
+                </a>
               </div>
             </div>
           </div>
+<!-- Texto -->
+
+
         </div>
 
       </div>
+
+      
 
     </section><!-- /About Section -->
 
@@ -295,238 +323,34 @@
       </div>
 
     </section><!-- /Skills Section -->
-  -->
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resumo</h2>
-        <div class="title-shape">
-          <svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
-          </svg>
-        </div>
-        <p>
-          Cada projeto, cada aula e cada material produzido são parte de um compromisso contínuo com a excelência e a inovação. Com uma trajetória que une ensino, pesquisa e produção de conteúdo educacional, minha missão é transformar desafios em soluções e conhecimento em impacto real.
-          </p>
-          
-      </div><!-- End Section Title -->
+    
+<!-- Seção destacada do Curso de Storytelling -->
+<section id="storytelling" class="storytelling-section" style="background-color: #ffffff; padding: 80px 0; ">
+  <div class="container">
+    <div class="row align-items-center">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row">
-          <div class="col-12">
-            <div class="resume-wrapper">
-              <div class="resume-block" data-aos="fade-up">
-                <h2>Experiência profissional</h2>
-                <p class="lead"><em>
-                  Explore minha jornada e descubra como educação e tecnologia podem caminhar juntas para criar experiências enriquecedoras.
-                  </em></p>
-
-                <div class="timeline">
-                  <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="timeline-left">
-                      <h4 class="company">Universidade de São Paulo</h4>
-                      <span class="period">Agosto, 2024 - o momento</span>
-                    </div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-right">
-                      <h3 class="position">Orientador dos cursos de pós-graduação lato sensu</h3>
-                      <p class="description">
-                        Orientador credenciado nos cursos de Pós-Graduação Lato Sensu da 
-                        USP/Esalq, atuando no MBA em Engenharia de Software. 
-                        Responsável por orientar pesquisas aplicadas e trabalhos de conclusão 
-                        de curso, auxiliando profissionais na estruturação de projetos 
-                        inovadores e na aplicação de boas práticas de engenharia de software e
-                        arquitetura de sistemas.
-
-                      </p>
-                      <p class="description">
-                        Contribuo para a formação de especialistas capacitados para os 
-                        desafios do mercado, alinhando conhecimento acadêmico com as 
-                        demandas da indústria.
-                      </p>
-                    </div>
-                  </div>
-
-                  
-                  <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="timeline-left">
-                      <h4 class="company">SENAI</h4>
-                      <span class="period">Novembro, 2022 - o momento</span>
-                    </div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-right">
-                      <h3 class="position">Professor</h3>
-                      <p class="description">
-                        Professor nos cursos técnicos de Cibersistemas e Desenvolvimento de Software, 
-                        atuando na formação de profissionais capacitados para o mercado de trabalho de TI,
-                        bem como para                      
-                        os desafios da indústria 4.0. 
-                        </p><p class="description">Com uma abordagem prática e alinhada às demandas do mercado, 
-                        ministro disciplinas que abrangem programação, engenharia de software, banco de dados,
-                        análise de sistemas e inovação tecnológica, 
-                        preparando os alunos para atuar de forma estratégica no setor de tecnologia.
-                      
-                      </p>
-                      
-                      <p></p>
-                    </div>
-                  </div>
-
-
-
-                  <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="timeline-left">
-                      <h4 class="company">Ariel Dias - ME</h4>
-                      <span class="period">Novembro, 2018 - o momento</span>
-                    </div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-right">
-                      <h3 class="position">Empreendedor em Educação, Desenvolvedor de Soluções Educacionais e Head de Inovação </h3>
-                      <p class="description"> 
-                        Responsável pela concepção e gestão da Ariel Dias ME, 
-                        empresa especializada em soluções educacionais e tecnológicas. 
-                        Atuação estratégica na criação de conteúdos didáticos, desenvolvimento de metodologias 
-                        inovadoras e implementação de treinamentos para potencializar
-                         a aprendizagem em ambientes acadêmicos e corporativos.
-                      
-                      </p>
-                      <p><strong> Principais atividades: </strong></p>
-                      <ul>
-                        <li> 📚 <strong>Desenvolvimento de materiais educacionais:</strong> Criação de livros, cursos e conteúdos interativos para ensino presencial e a distância.</li>
-                        <li> 💻 <strong>Treinamentos e capacitação:</strong> Formação profissional em storytelling, análise de dados e desenvolvimento de software.</li>
-                        <li> 🎓 <strong>Consultoria em inovação educacional:</strong> Implementação de tecnologias para aprimorar experiências de aprendizagem.</li>
-                        <li> 🎬 <strong>Produção de conteúdos multimídia:</strong> Desenvolvimento de materiais audiovisuais e interativos para o setor educacional.</li>
-                        <li> 🎤 <strong>Professor convidado:</strong> Atuação em programas de pós-graduação Lato Sensu e Stricto Sensu, ministrando disciplinas voltadas para gestão, tecnologia, inovação e desenvolvimento de sistemas.</li>
-                      </ul>
-                      <p></p>
-                   
-                    </div>
-                  </div>
-
-
-                  <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="timeline-left">
-                      <h4 class="company">Universidade Cruzeiro do Sul</h4>
-                      <span class="period">2020 - 2023</span>
-                    </div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-right">
-                      <h3 class="position">Professor</h3>
-                      <p class="description"> 
-                        Professor nos cursos de Graduação e Pós-Graduação em Análise e 
-                        Desenvolvimento de Sistemas, Ciência da Computação e Jogos Digitais, 
-                        contribuindo para a formação de profissionais capacitados para 
-                        os desafios do mercado de tecnologia. 
-                      </p>
-                      <p class="description"> 
-                        Ministro disciplinas que abrangem desde fundamentos da programação e 
-                        estrutura de dados até temas avançados como sistemas operacionais, 
-                        sistemas distribuídos, engenharia de software, DevOps, 
-                        banco de dados e desenvolvimento web. 
-                      </p>
-                      <p class="description"> 
-                        Com foco em inovação e aplicação prática, oriento projetos 
-                        que conectam teoria e mercado, preparando os alunos para atuar 
-                        com excelência na área de tecnologia.
-                      </p>
-                      <p></p>
-                   
-                    </div>
-                  </div>
-
-
-
-
-
-
-                  <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="timeline-left">
-                      <h4 class="company">Centro Universitário das Faculdades Metropolitanas Unidas</h4>
-                      <span class="period">2016 - 2020</span>
-                    </div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-right">
-                      <h3 class="position">Professor</h3>
-                      <p class="description"> 
-                        Professor nos cursos de Graduação e Pós-Graduação em Análise e 
-                        Desenvolvimento de Sistemas, Ciência da Computação e Jogos Digitais, 
-                        atuando em disciplinas essenciais como programação de computadores,
-                         estrutura de dados, grafos, sistemas operacionais, 
-                         sistemas distribuídos, banco de dados, engenharia de software, 
-                         DevOps e desenvolvimento web. 
-                      </p>
-                      <p class="description"> 
-                        Além das atividades em sala de aula, exerci a função de professor de tempo integral, 
-                        coordenando iniciativas acadêmicas e promovendo eventos como a feira INOVAE e o
-                         Rally do Conhecimento, contribuindo para o engajamento dos alunos e a
-                          conexão entre academia e mercado.
-                      </p>
-                      
-                      <p></p>
-                   
-                    </div>
-                  </div>
-
-
-                </div>
-              </div>
-
-              <div class="resume-block" data-aos="fade-up" data-aos-delay="100">
-                <h2>Minha formação</h2>
-                <p class="lead">Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet adipiscing.</p>
-
-                <div class="timeline">
-                  <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="timeline-left">
-                      <h4 class="company">Universidade de São Paulo</h4>
-                      <span class="period">2012-2014</span>
-                    </div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-right">
-                      <h3 class="position">Mestre em Ciência da Computação e Matemática Computacional</h3>
-                      <p class="description">
-                        Minha pesquisa focou em sistemas distribuídos e programação concorrente, com ênfase em computação em nuvem e elasticidade computacional. Trabalhei no desenvolvimento de modelos preditivos baseados em redes neurais para otimizar a alocação automática de recursos em infraestruturas escaláveis, buscando maior eficiência e automação no provisionamento de IaaS.  
-                      </p>
-                      <p class="description">
-                        Esse projeto resultou no artigo "Providing IaaS resources automatically through prediction and monitoring approaches", apresentado no IEEE Symposium on Computers and Communications (ISCC), realizado em Funchal, Portugal, em 2014. Essa experiência foi fundamental para aprofundar minha atuação na interseção entre inteligência artificial, computação em nuvem e automação de infraestruturas tecnológicas.
-
-
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="timeline-left">
-                      <h4 class="company">Pontifícia Universidade Católica de Minas Gerais </h4>
-                      <span class="period">2007 - 2011</span>
-                    </div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-right">
-                      <h3 class="position"> Bacharel em Ciência da Computação</h3>
-                      <p class="description">
-                        Foi nesse período que construí uma base sólida em engenharia de software, programação e arquitetura de sistemas, explorando desde os fundamentos da computação até técnicas avançadas de desenvolvimento de sistemas.
-                      </p>
-                      <p class="description">
-                        Ao longo da graduação, realizei três iniciações científicas, investigando temas como sistemas distribuídos, aprendizado de máquina e otimização computacional. Essas experiências foram determinantes para o meu interesse na pesquisa acadêmica, permitindo-me aprofundar em desafios computacionais complexos e consolidar uma visão crítica sobre a evolução da tecnologia. Esse envolvimento com a pesquisa também abriu caminhos para minha futura atuação no ensino superior, fortalecendo minha conexão entre a academia e o mercado.  
-                      
-                     
-                      </p>
-                    </div>
-                  </div>
-
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <!-- Texto -->
+      <div class="col-lg-6" data-aos="fade-right">
+        <h2 style="font-size: 2.5rem; color: #ff5722; margin-bottom: 20px;">Curso de Storytelling</h2>
+        <p style="font-size: 1.2rem; line-height: 1.8; color: #333; margin-bottom: 30px;">
+          Desperte o poder das histórias para ensinar, vender, inspirar e transformar. Neste curso exclusivo com o <strong>Prof. Ariel Dias</strong>, você vai aprender técnicas narrativas usadas pelas maiores marcas e contadores de histórias do mundo — com aplicação prática para educação, negócios, dados e muito mais.
+        </p>
+        <a href="curso-st.html" class="btn btn-primary" style="background-color: #ff5722; border: none; font-size: 1.1rem; padding: 12px 28px; border-radius: 30px; color: white; transition: 0.3s; text-decoration: none;">
+          Conheça o curso
+        </a>
       </div>
 
-    </section><!-- /Resume Section -->
+      <!-- Imagem -->
+      <div class="col-lg-6 text-center" data-aos="fade-left">
+        <img src="assets/img/profile/fundostorytelling.png" alt="Caricatura Professor Ariel" class="img-fluid" style="max-width: 90%; border-radius: 20px; ">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section">
@@ -751,6 +575,77 @@
 
     </section><!-- /Portfolio Section -->
 
+
+
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Serviços</h2>
+        <div class="title-shape">
+          <svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>
+        </div>
+        <p>Unimos propósito, inovação e experiência para criar jornadas de aprendizagem inesquecíveis.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row align-items-center">
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <h2 class="fw-bold mb-4 servies-title">Soluções Educacionais para Transformar o Conhecimento</h2>
+            <p class="mb-4">Uma variedade de serviços voltados para educação e tecnologia, sempre com foco na aprendizagem significativa, no desenvolvimento de competências e na produção de conteúdos inovadores.</p>
+            <a href="#contact" class="btn btn-outline-primary">Entre em contato!</a>
+          </div>
+          <div class="col-lg-8">
+            <div class="row g-4">
+
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-item">
+                  <i class="bi bi-chat-dots icon"></i>
+                  <h3><a href="#services">Consultoria em Storytelling</a></h3>
+                  <p><strong>Capacitações personalizadas em Storytelling</strong> aplicado à Educação, Negócios, Saúde, Dados e Tecnologia, com foco em tornar a comunicação mais envolvente, clara e impactante.</p>
+                </div>
+              </div><!-- End Service Item -->
+              
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-item">
+                  <i class="bi bi-journal-richtext icon"></i>
+                  <h3><a href="#services">Criação de Conteúdo</a></h3>
+                  <p><strong>Desenvolvimento de livros, apostilas, vídeo-aulas e recursos multimídia </strong>para instituições de ensino e cursos online, com linguagem acessível e rigor técnico.</p>
+                </div>
+              </div><!-- End Service Item -->
+              
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-item">
+                  <i class="bi bi-mortarboard icon"></i>
+                  <h3><a href="#services">Consultoria Educacional</a></h3>
+                  <p><strong>Consultoria para instituições e professores </strong> em estratégias de ensino, uso de storytelling, implementação de metodologias inovadoras e design de cursos digitais.</p>
+                </div>
+              </div><!-- End Service Item -->
+              
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-item">
+                  <i class="bi bi-person-video2 icon"></i>
+                  <h3><a href="#services">Aulas e Cursos</a></h3>
+                  <p><strong>Planejamento e execução</strong> de aulas teóricas e práticas para graduação, pós-graduação e treinamentos corporativos, com metodologias ativas e foco na aprendizagem aplicada.</p>
+                </div>
+              </div><!-- End Service Item -->
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+
+    
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section light-background">
 
@@ -912,229 +807,60 @@
 
     </section><!-- /Testimonials Section -->
 
-    <!-- Services Section -->
-    <section id="services" class="services section">
+<!-- Contact Section -->
+<section id="contact" class="contact section light-background">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row align-items-center g-5">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Serviços</h2>
-        <div class="title-shape">
-          <svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
-          </svg>
-        </div>
-        <p>Unimos propósito, inovação e experiência para criar jornadas de aprendizagem inesquecíveis.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row align-items-center">
-          <div class="col-lg-4 mb-5 mb-lg-0">
-            <h2 class="fw-bold mb-4 servies-title">Soluções Educacionais para Transformar o Conhecimento</h2>
-            <p class="mb-4">Uma variedade de serviços voltados para educação e tecnologia, sempre com foco na aprendizagem significativa, no desenvolvimento de competências e na produção de conteúdos inovadores.</p>
-            <a href="#contact" class="btn btn-outline-primary">Entre em contato!</a>
-          </div>
-          <div class="col-lg-8">
-            <div class="row g-4">
-
-
-              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="service-item">
-                  <i class="bi bi-chat-dots icon"></i>
-                  <h3><a href="service-details.html">Consultoria em Storytelling</a></h3>
-                  <p><strong>Capacitações personalizadas em Storytelling</strong> aplicado à Educação, Negócios, Saúde, Dados e Tecnologia, com foco em tornar a comunicação mais envolvente, clara e impactante.</p>
-                </div>
-              </div><!-- End Service Item -->
-              
-              <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="service-item">
-                  <i class="bi bi-journal-richtext icon"></i>
-                  <h3><a href="service-details.html">Criação de Conteúdo</a></h3>
-                  <p><strong>Desenvolvimento de livros, apostilas, vídeo-aulas e recursos multimídia </strong>para instituições de ensino e cursos online, com linguagem acessível e rigor técnico.</p>
-                </div>
-              </div><!-- End Service Item -->
-              
-              <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                <div class="service-item">
-                  <i class="bi bi-mortarboard icon"></i>
-                  <h3><a href="service-details.html">Consultoria Educacional</a></h3>
-                  <p><strong>Consultoria para instituições e professores </strong> em estratégias de ensino, uso de storytelling, implementação de metodologias inovadoras e design de cursos digitais.</p>
-                </div>
-              </div><!-- End Service Item -->
-              
-              <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
-                <div class="service-item">
-                  <i class="bi bi-person-video2 icon"></i>
-                  <h3><a href="service-details.html">Aulas e Cursos</a></h3>
-                  <p><strong>Planejamento e execução</strong> de aulas teóricas e práticas para graduação, pós-graduação e treinamentos corporativos, com metodologias ativas e foco na aprendizagem aplicada.</p>
-                </div>
-              </div><!-- End Service Item -->
-              
-            </div>
-          </div>
-        </div>
-
+      <!-- Texto à esquerda -->
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+        <div class="section-category mb-3"></div>
+        <h2 class="display-5 mb-4">Vamos conversar sobre educação, inovação ou tecnologia?</h2>
+        <p class="lead mb-4">
+          Seja para treinamentos, consultorias ou projetos educacionais personalizados, estou à disposição para construir soluções impactantes. Entre em contato comigo por e-mail ou WhatsApp.
+        </p>
       </div>
 
-    </section><!-- /Services Section -->
+      <!-- Contatos à direita -->
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+        <div class="card shadow-sm border-0 rounded-4 p-4 bg-white">
+          <div class="contact-info">
 
-    <!-- Faq Section -->
-    <section id="faq" class="faq section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Perguntas frenquentes</h2>
-        <div class="title-shape">
-          <svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
-          </svg>
-        </div>
-        <p>Reuni aqui as dúvidas mais comuns sobre os serviços que ofereço como professor e consultor, com destaque para os <strong>cursos de Storytelling</strong> aplicados a diferentes áreas do conhecimento.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row justify-content-center">
-
-          <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="faq-container">
-
-              <div class="faq-item faq-active">
-                <h3>O que é o curso de Storytelling que você oferece?</h3>
-                <div class="faq-content">
-                  <p>O curso de Storytelling que ofereço é uma formação teórica e prática, voltada para profissionais e estudantes de diversas áreas como educação, negócios, saúde, tecnologia e dados. Nele, ensino como construir narrativas envolventes e estratégicas para melhorar a comunicação, a conexão com o público e a retenção da mensagem.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>O curso de Storytelling é adaptado para diferentes áreas?</h3>
-                <div class="faq-content">
-                  <p>Sim! Cada versão do curso é adaptada com exemplos e dinâmicas específicas para a área do participante. Assim, profissionais da saúde, professores, analistas de dados ou empreendedores encontram conteúdos alinhados à sua realidade.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Você oferece o curso para empresas ou apenas individualmente?</h3>
-                <div class="faq-content">
-                  <p>Ofereço o curso tanto para turmas abertas ao público quanto para equipes internas de empresas e instituições de ensino. É possível montar turmas personalizadas com foco nos desafios e objetivos da organização.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Quais serviços você presta além do curso de Storytelling?</h3>
-                <div class="faq-content">
-                  <p>Além do curso, atuo com a produção de materiais didáticos, ministração de aulas em graduação e pós, consultoria educacional, orientação acadêmica e desenvolvimento de conteúdos digitais e interativos para o ensino.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>O curso de Storytelling exige conhecimento prévio?</h3>
-                <div class="faq-content">
-                  <p>Não. O curso foi pensado para ser acessível a todos, mesmo para quem nunca teve contato com o tema. Toda a abordagem é construída de forma gradual, com base em exemplos práticos e linguagem clara.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Você fornece certificado no final do curso?</h3>
-                <div class="faq-content">
-                  <p>Sim, todos os participantes que concluírem o curso com participação ativa recebem um certificado digital reconhecendo a carga horária e os conteúdos desenvolvidos.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-            </div>
-
-          </div><!-- End Faq Column-->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Faq Section -->
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section light-background">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row g-5">
-          <div class="col-lg-6">
-            <div class="content" data-aos="fade-up" data-aos-delay="200">
-              <div class="section-category mb-3">Contact</div>
-              <h2 class="display-5 mb-4">Entre em contato para treinamentos, parcerias ou projetos educacionais
-              </h2>
-              <p class="lead mb-4">Se você deseja agendar um curso, solicitar uma proposta de consultoria ou apenas trocar ideias sobre educação, inovação e tecnologia, será um prazer conversar com você.                .</p>
-
-              <div class="contact-info mt-5">
-                <div class="info-item d-flex mb-3">
-                  <i class="bi bi-envelope-at me-3"></i>
-                  <span>arielsdias@gmail.com</span>
-                </div>
-
-                <div class="info-item d-flex mb-3">
-                  <i class="bi bi-telephone me-3"></i>
-                  <span>+55 11 96808-8602</span>
-                </div>
-
-                <div class="info-item d-flex mb-4">
-                  <i class="bi bi-geo-alt me-3"></i>
-                  <span>Guarulhos / SP</span>
-                </div>
-
-                
+            <!-- WhatsApp -->
+            <div class="info-item d-flex align-items-center mb-4">
+              <i class="bi bi-whatsapp me-3 text-success" style="font-size: 1.5rem;"></i>
+              <div>
+                <strong style="font-size: 1rem;">WhatsApp</strong><br>
+                <a href="https://wa.me/5511968088602" target="_blank" style="text-decoration: none; color: #333;">+55 11 96808-8602</a>
               </div>
             </div>
-          </div>
 
-          <div class="col-lg-6">
-            <div class="contact-form card" data-aos="fade-up" data-aos-delay="300">
-              <div class="card-body p-4 p-lg-5">
-
-                <form action="forms/contact.php" method="post" class="php-email-form">
-                  <div class="row gy-4">
-
-                    <div class="col-12">
-                      <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                    </div>
-
-                    <div class="col-12 ">
-                      <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                    </div>
-
-                    <div class="col-12">
-                      <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                    </div>
-
-                    <div class="col-12">
-                      <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                    </div>
-
-                    <div class="col-12 text-center">
-                      <div class="loading">Loading</div>
-                      <div class="error-message"></div>
-                      <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                      <button type="submit" class="btn btn-submit w-100">Submit Message</button>
-                    </div>
-
-                  </div>
-                </form>
-
+            <!-- E-mails -->
+            <div class="info-item d-flex align-items-center mb-4">
+              <i class="bi bi-envelope-at me-3 text-primary" style="font-size: 1.5rem;"></i>
+              <div>
+                <strong style="font-size: 1rem;">E-mail profissional</strong><br>
+                <span>professor@arieldias.com.br</span><br>
               </div>
             </div>
+
+            <!-- Localização -->
+            <div class="info-item d-flex align-items-center">
+              <i class="bi bi-geo-alt me-3 text-danger" style="font-size: 1.5rem;"></i>
+              <div>
+                <strong style="font-size: 1rem;">Localização</strong><br>
+                <span>Guarulhos / SP</span>
+              </div>
+            </div>
+
           </div>
-
         </div>
-
       </div>
 
-    </section><!-- /Contact Section -->
+    </div>
+  </div>
+</section>
+
 
   </main>
 
@@ -1142,7 +868,7 @@
 
     <div class="container">
       <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">EasyFolio</strong> <span>All Rights Reserved</span></p>
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">Professor Ariel Dias</strong> <span>All Rights Reserved</span></p>
       </div>
       <div class="social-links d-flex justify-content-center">
         <a href="https://www.instagram.com/professorarieldias/"><i class="bi bi-instagram"></i></a>
