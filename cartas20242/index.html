@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download de Cartas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 700px;
+      margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container text-center">
+    <h1 class="mb-4">Download de Cartas de Honra ao Mérito - 2º Semestre 2024</h1>
+    <p class="mb-4">Selecione seu nome para baixar sua carta em PDF:</p>
+    <input class="form-control mb-3" id="searchInput" type="text" placeholder="Digite seu nome...">
+    <select class="form-select mb-3" id="studentSelect" size="10"></select>
+    <button class="btn btn-primary" onclick="downloadPDF()">Baixar Carta</button>
+  </div>
+
+  <script>
+    const nomes = [
+      "Davi Carvalho Araújo","Felipe Santos Meneses","Thalis de Camargo Pereira Andrade","Yasmin Ferraz Santos",
+      "Bruno Vinicius Vieira de Melo","Gabriel Oliveira Macedo","João Victor de Campos Martins","Jullia Rocha Ferreira",
+      "Kevin Rodrigues Muniz","Vinicios de Souza Silva","Ana Caroline Zainelli Nascimento","Ana Vitória Ruas Porto",
+      "Brayan Nattan Ferreira de Almeida","Fellipe de Souza Moraes","Gabriel Rodrigues de Souza","Iago Felipe Damasceno da Silva",
+      "João Pedro dos Santos","Jonatas Viana Barbosa","Larissa Oliveira da Silva","Manuela Santiago Marinho de Oliveira",
+      "Raissa Almeida dos Anjos","Sara Vitória Bernardo de Torres","Victor Alexandre Silva","Vitor Mocci Capuani",
+      "Ysabelly Alves dos Santos Diniz","Carlos Eduardo Santana Filho","Ezequiel Gustavo Cardoso Lourenço","Jefferson Martins de Almeida",
+      "Rafael Honorato Desidério","Gustavo Campos de Oliveira","Gustavo Honorato Vieira","João Vitor Ferreira da Silva",
+      "Kaue Henrique da Silva","Matheus Bronzato de Souza Vieira","Nicolas da Silva Freitas","Nicolas Haneda de Lima",
+      "Nicollas Gomes de Barros","Pedro Fernandes de Almeida","Pedro Henrique Avelino do Carmo","Pedro Lucas de Almeida Emídio",
+      "Rayná Lasara Reis de Sousa","Anny Isabele de Souza Macedo","Arthur Borges de Lima","Caique Oliveira",
+      "Camilla Luisa Macedo Nunes","Gustavo Augusto dos Santos","Gustavo Henrique Catto Solera","Heloisa Climaco Silva",
+      "Laryssa Cristina Ribeiro Pinheiro","Lucas Hideki Dutra Takahashi","Osmar Henrique Goncalves Moreira","Raphaela Mendes Messias",
+      "Rogerio de Jesus Leal","Ryan Donato Perrela Ferreira","Caio Fonseca de Souza","Daniel Pascoal Torchia dos Santos",
+      "Guilherme Fernando Costa","Matheus Baptista Oliveira","Kaike Sousa Tamiarana","Leonardo Inacio de Oliveira",
+      "Luiz Henrique Lima Dominiquini","Maria Gabryella da Silva Maia","Raphael Pascoal Torchia dos Santos",
+      "Isaque Nista de Oliveira","Júlia Cristina Castro Conceição","Laura Martins Madureira Lima","Leticia Viana Magalhães",
+      "Mateus Maciel Bernardo de Almeida","Matheus Rodrigues dos Santos","Nicoly Souza Vieira",
+      "Rhayanne Cecília Vieira dos Santos Lima","Sophia Araújo Moraes","Sophia Muniz Sbais","Taylor Cavalcante Silva",
+      "Brian Adalid Ramos Huanca (evadido)","Fernanda Barbosa Bomfim","Rannya Alves Guimarães Santos",
+      "Taylayne Vieira dos Santos Kades","Thiago Omena Silva","Vitória de Jesus Rodrigues","Ana Beatriz Martins Coutinho",
+      "Celso Rodrigo de Souza Bernardo","Guilherme Matos Gusmão","Isabella Ferraz Santos",
+      "Jeferson Matheus Rodrigues Soares","Kaio Gomes Marcondes","Camila Vitoria Lima dos Santos",
+      "Dennis Lopes de Oliveira","Jenifer Silva Mendes","Mateus Alves Rodrigues","Wesley Sidclei Cruz",
+      "Felipe das Chagas","Gabriella Lopes Moura","Isabella Chimenez Pupim","Jonathan Carrilho Ferreira",
+      "Mauricio Dalton Gomes","Patrick Cantidio Cardoso Silveira","Paulo Henrique Teles dos Santos",
+      "Robson da Rocha Oliveira Junior","Anrry Hidely Delgado Homma","Thiago Paixão Ruiz","Felipe Silva Costabile",
+      "Guilherme Brito dos Santos","Guilherme dos Santos Vicente","Lucas Henrique Cardoso","Ana Flávia Anterio de Souza",
+      "Eduardo Noel Cavalcanti","Kauã Marcon dos Santos","Lucas Oliveira de Souza","Lucas Oliveira Melo",
+      "Luiz Paulo de Souza Firmo","Octávio Henrique Bispo Santos","Thierry Henry Morato Cardoso",
+      "Vinicius da Silva Santos","Giovana Lobo dos Santos","Henrique Soares Nunes",
+      "Kauã Gabriel Nunes de Oliveira","Laura Ramos da Silva","Livia Vitoria de Souza Ozorio","Arthur Augusto Cavalcante",
+      "Eliana Nascimento de Jesus Fonseca","Igor Ciscoto Bitencourt","Vinicius Cardena Renesto"
+    ];
+
+    const select = document.getElementById("studentSelect");
+    const input = document.getElementById("searchInput");
+
+    function populateSelect(filter = "") {
+      select.innerHTML = "";
+      nomes
+        .filter(nome => nome.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(nome => {
+          const option = document.createElement("option");
+          option.value = nome;
+          option.textContent = nome;
+          select.appendChild(option);
+        });
+    }
+
+    function downloadPDF() {
+      const nomeSelecionado = select.value;
+      if (nomeSelecionado) {
+        const nomeArquivo = nomeSelecionado.replaceAll("/", "-") + ".pdf";
+        window.open(`cartas/${nomeArquivo}`, '_blank');
+      } else {
+        alert("Por favor, selecione um nome da lista.");
+      }
+    }
+
+    input.addEventListener("input", (e) => {
+      populateSelect(e.target.value);
+    });
+
+    populateSelect(); // inicializa
+  </script>
+</body>
+</html>
