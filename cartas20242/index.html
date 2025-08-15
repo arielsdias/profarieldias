@@ -41,7 +41,7 @@
   <div class="container text-center">
     <h1 class="mb-4">Cartas de Honra Mérito</h1>
     <h2 class="mb-4"> Premiação do concurso melhor desempenho</h2>
-    <h3> 2º Semestre / 2024 </h3>
+    <h3> 1º Semestre / 2025 </h3>
     <p class="mb-4">Selecione seu nome para baixar sua carta em PDF:</p>
     <input class="form-control mb-3" id="searchInput" type="text" placeholder="" autocomplete="off">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="studentCards"></div>
@@ -53,42 +53,122 @@
   </div>
 
   <script>
-    const nomes = [
-      "Ana Beatriz Martins Coutinho", "Ana Caroline Zainelli Nascimento", "Ana Flávia Anterio de Souza", "Ana Vitória Ruas Porto",
-      "Anny Isabele de Souza Macedo", "Anrry Hidely Delgado Homma", "Arthur Augusto Cavalcante", "Arthur Borges de Lima",
-      "Brian Adalid Ramos Huanca (evadido)", "Brayan Nattan Ferreira de Almeida", "Bruno Vinicius Vieira de Melo",
-      "Caio Fonseca de Souza", "Caique Oliveira", "Camila Vitoria Lima dos Santos", "Camilla Luisa Macedo Nunes",
-      "Carlos Eduardo Santana Filho", "Celso Rodrigo de Souza Bernardo", "Daniel Pascoal Torchia dos Santos",
-      "Davi Carvalho Araújo", "Dennis Lopes de Oliveira", "Eduardo Noel Cavalcanti", "Eliana Nascimento de Jesus Fonseca",
-      "Ezequiel Gustavo Cardoso Lourenço", "Felipe das Chagas", "Felipe Santos Meneses", "Felipe Silva Costabile",
-      "Fellipe de Souza Moraes", "Fernanda Barbosa Bomfim", "Gabriel Oliveira Macedo", "Gabriel Rodrigues de Souza",
-      "Gabriella Lopes Moura", "Giovana Lobo dos Santos", "Guilherme Brito dos Santos", "Guilherme dos Santos Vicente",
-      "Guilherme Fernando Costa", "Guilherme Matos Gusmão", "Gustavo Augusto dos Santos", "Gustavo Campos de Oliveira",
-      "Gustavo Henrique Catto Solera", "Gustavo Honorato Vieira", "Heloisa Climaco Silva", "Henrique Soares Nunes",
-      "Igor Ciscoto Bitencourt", "Isaque Nista de Oliveira", "Isabella Chimenez Pupim", "Isabella Ferraz Santos",
-      "Iago Felipe Damasceno da Silva", "Jeferson Matheus Rodrigues Soares", "Jefferson Martins de Almeida",
-      "Jenifer Silva Mendes", "João Pedro dos Santos", "João Victor de Campos Martins", "João Vitor Ferreira da Silva",
-      "Jonathan Carrilho Ferreira", "Jonatas Viana Barbosa", "Jullia Rocha Ferreira", "Júlia Cristina Castro Conceição",
-      "Kaike Sousa Tamiarana", "Kaio Gomes Marcondes", "Kauã Gabriel Nunes de Oliveira", "Kauã Marcon dos Santos",
-      "Kaue Henrique da Silva", "Kevin Rodrigues Muniz", "Larissa Oliveira da Silva", "Laura Martins Madureira Lima",
-      "Laura Ramos da Silva", "Laryssa Cristina Ribeiro Pinheiro", "Leonardo Inacio de Oliveira", "Leticia Viana Magalhães",
-      "Livia Vitoria de Souza Ozorio", "Lucas Henrique Cardoso", "Lucas Hideki Dutra Takahashi", "Lucas Oliveira Melo",
-      "Lucas Oliveira de Souza", "Luiz Henrique Lima Dominiquini", "Luiz Paulo de Souza Firmo",
-      "Manuela Santiago Marinho de Oliveira", "Maria Gabryella da Silva Maia", "Mateus Alves Rodrigues",
-      "Mateus Maciel Bernardo de Almeida", "Matheus Baptista Oliveira", "Matheus Bronzato de Souza Vieira",
-      "Matheus Rodrigues dos Santos", "Mauricio Dalton Gomes", "Nicoly Souza Vieira", "Nicolas Haneda de Lima",
-      "Nicolas da Silva Freitas", "Nicollas Gomes de Barros", "Octávio Henrique Bispo Santos",
-      "Osmar Henrique Goncalves Moreira", "Patrick Cantidio Cardoso Silveira", "Paulo Henrique Teles dos Santos",
-      "Pedro Fernandes de Almeida", "Pedro Fernandes de Santana", "Pedro Henrique Avelino do Carmo", "Pedro Lucas de Almeida Emídio",
-      "Rafael Honorato Desidério", "Raissa Almeida dos Anjos", "Raphaela Mendes Messias", "Raphael Pascoal Torchia dos Santos",
-      "Rannya Alves Guimarães Santos", "Raquel Palhano dos Santos Porter","Rayná Lasara Reis de Sousa", "Rhayanne Cecília Vieira dos Santos Lima",
-      "Robson da Rocha Oliveira Junior", "Rogerio de Jesus Leal", "Ryan Donato Perrela Ferreira",
-      "Sara Vitória Bernardo de Torres", "Sophia Araújo Moraes", "Sophia Muniz Sbais", "Taylor Cavalcante Silva",
-      "Taylayne Vieira dos Santos Kades", "Thalis de Camargo Pereira Andrade", "Thiago Omena Silva",
-      "Thiago Paixão Ruiz", "Thierry Henry Morato Cardoso", "Victor Alexandre Silva", "Vinicius Cardena Renesto",
-      "Vinicius da Silva Santos", "Vinicios de Souza Silva", "Vitória de Jesus Rodrigues", "Vitor Mocci Capuani",
-      "Wesley Sidclei Cruz", "Yasmin Ferraz Santos", "Ysabelly Alves dos Santos Diniz"
-    ];
+nomes = [
+    "Adriel Tito da Silva Oliveira",
+    "Alan Willian Teixeira de Matos",
+    "Alecsandro Junior Gomes Pereira",
+    "Ana Clara Oliveira da Silva Santos",
+    "Ana Julia Barbosa de Santana",
+    "Ana Julia Souza Saldanha",
+    "Andre Mendonça Sabino",
+    "Andre Silva de Jesus",
+    "André Silva de Jesus",
+    "Arthur Borges de Lima",
+    "Arthur Rafael Thomaz Santos",
+    "Arthur Ramos da Costa",
+    "Breno Paulon da Silva",
+    "Bruno Henrique Oliveira Silva",
+    "Bryan Vinicius Pereira Cunha",
+    "Caio Henrique Alves Santos",
+    "Caique Oliveira",
+    "Camilla Luisa Macedo Nunes",
+    "Clara Gonçalves Reis",
+    "Daniel Borges de Oliveira",
+    "Daniel Miranda de Matos",
+    "Daniela Araujo de Brito",
+    "Eduardo Alves da Fonseca",
+    "Eduardo Francisco de Melo",
+    "Emily Bazilio da Costa",
+    "Emanuelly Neris Figueiredo Bispo",
+    "Emanuelly Ribeiro Evangelista",
+    "Felipe Vieira Braga",
+    "Fernanda Aguiar",
+    "Fernanda Carrascosa da Silva",
+    "Gabriel Amarante Araújo",
+    "Gabriel Gomes Silva",
+    "Gabriel Pereira Santos",
+    "Giovanna Ferreira de Almeida",
+    "Giovanna Figueiredo Silva",
+    "Giovane Penteadura da Costa",
+    "Guilherme Alves Valentim Leite",
+    "Guilherme Barbosa Almeida",
+    "Guilherme Vespasiano Rodrigues",
+    "Guilherme de Almeida Dias",
+    "Gustavo Alves de Deus",
+    "Gustavo Caio Neves",
+    "Gustavo Campos de Oliveira",
+    "Gustavo Honorato Vieira",
+    "Gustavo Henrique Catto Solera",
+    "Gustavo da Costa Silva",
+    "Gyovanna Xavier dos Santos",
+    "Henrique Fernandes Ferreira",
+    "Igor Oliveira da Silva",
+    "Isabella Pereira Ribeiro",
+    "Ismael da Silva",
+    "João Lincoln Caldeira de Araujo",
+    "João Vitor Ferreira da Silva",
+    "Julia Morais da Silva",
+    "Julia dos Santos Nogueira",
+    "Juliana Hermione Veron Guimarães",
+    "Juliana Rayssa Gomes da Silva",
+    "Julio Cesar Mariano Rodrigues",
+    "Kaique Candido dos Reis",
+    "Karolina Silva dos Santos",
+    "Kaue Alexandre de Souza",
+    "Kaue Henrique da Silva",
+    "Kelly Manuelle de Brito Moreira",
+    "Lara Giovana Simoes Volpon",
+    "Laryssa Cristina Ribeiro Pinheiro",
+    "Laura Giovana Simoes Volpon",
+    "Leticia Eugenio Mandu dos Santos",
+    "Leticia Viana Magalhaes",
+    "Leonardo Castro Brigido",
+    "Leonardo Genta da Silva",
+    "Lorena Meneses Alves",
+    "Lucas Ferreira dos Santos",
+    "Lucas Hideki Dutra Takahashi",
+    "Lucas Ian Sousa Santos",
+    "Lucas Silva Barbosa de Lima",
+    "Luiza Caldas dos Santos",
+    "Luiz Henrique de Sousa Silva",
+    "Maria Eduarda Alves da Costa",
+    "Maria Eduarda Gomes Oliveira",
+    "Maria Izabel de Lima Silva",
+    "Marcus Paulo da Silva Almeida",
+    "Matheus Andrade dos Santos",
+    "Matheus Frontscher Teixeira",
+    "Matheus Henrique de Matos",
+    "Mateus Vilete Gratão",
+    "Miguel Sampaio Dias",
+    "Murilo da Silva Candea do Carmo",
+    "Natã de Jesus Dionisio",
+    "Natalia Cristina da Paixão",
+    "Nicolas Araujo Gomes",
+    "Nicolas Haneda de Lima",
+    "Nicolas da Silva Freitas",
+    "Nicollas Gomes de Barros",
+    "Paulo Guilherme Luback dos Reis",
+    "Pedro Antonio Ferreira Guedes",
+    "Pedro Henrique Avelino do Carmo",
+    "Pedro Henrique Souza Carvalho",
+    "Pedro Henrique de Souza Barbosa",
+    "Pedro de Almeida Santos",
+    "Quislom Diniz Silva",
+    "Raphaela Mendes Messias",
+    "Rogério de Jesus Leal",
+    "Ryan Donato Perrela Ferreira",
+    "Sofia Bueno de Camargo",
+    "Victor Costeira Lima",
+    "Victor Roberto da Silva",
+    "Victoria Heloisa Santos",
+    "Vinicius Alves Vieira",
+    "Vytor Leonardo Serrate de Lima",
+    "Wesley Sidclei Cruz",
+    "Yago Fernandes Mozinho",
+    "Yuri Alves da Silva"
+]
+
+;
 
     const cardContainer = document.getElementById("studentCards");
 const input = document.getElementById("searchInput");
@@ -104,7 +184,9 @@ function createCard(nome) {
   card.onclick = () => downloadPDF(nome);
 
   const img = document.createElement("img");
-  const nomeFeminino = /\b(Ana|Anny|Camila|Camilla|Eliana|Fernanda|Gabriella|Giovana|Heloisa|Isabella|Jenifer|Jullia|Júlia|Larissa|Laura|Laryssa|Leticia|Livia|Manuela|Maria|Nicoly|Raissa|Raphaela|Rannya|Rayná|Rhayanne|Sara|Sophia|Taylayne|Vitória|Yasmin|Ysabelly)/i.test(nome);
+  //const nomeFeminino = /\b(Ana|Anny|Camila|Camilla|Eliana|Fernanda|Gabriella|Giovana|Heloisa|Isabella|Jenifer|Jullia|Júlia|Larissa|Laura|Laryssa|Leticia|Livia|Manuela|Maria|Nicoly|Raissa|Raphaela|Rannya|Rayná|Rhayanne|Sara|Sophia|Taylayne|Vitória|Yasmin|Ysabelly)/i.test(nome);
+  const nomeFeminino = /\b(Ana|Anny|Camila|Camilla|Clara|Daniela|Emanuelly|Emily|Fernanda|Gabriella|Giovana|Giovanna|Gyovanna|Heloisa|Isabella|Isabela|Jenifer|Julia|Juliana|Jullia|Kelly|Karolina|Lara|Larissa|Laura|Laryssa|Leticia|Letícia|Livia|Lorena|Luiza|Maria|Natalia|Natália|Raphaela|Raissa|Rannya|Rayná|Rhayanne|Sara|Sofia|Sophia|Taylayne|Victoria|Vitória|Ysabelly)\b/i.test(nome);
+
   img.src = nomeFeminino
     ? "https://cdn-icons-png.flaticon.com/512/4140/4140047.png"
     : "https://cdn-icons-png.flaticon.com/512/4140/4140061.png"; // menino
