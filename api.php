@@ -9,34 +9,29 @@ $dbname     = "projetodb";
 
 // Conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
-
 if ($conn->connect_error) {
     die(json_encode(["erro" => "Falha na conexão: " . $conn->connect_error]));
 }
 
-// Captura a ação
-$acao = $_GET['acao'] ?? '';
+// Captura a entidade (filmes, atores ou elenco) e ação (listar, inserir, atualizar, deletar)
+$entidade = $_GET['entidade'] ?? '';
+$acao     = $_GET['acao'] ?? '';
 
-switch ($acao) {
+switch ($entidade) {
     // =========================
-    // LISTAR FILMES
+    // FILMES
     // =========================
-    case "listar_filmes":
-        $sql = "SELECT * FROM filmes";
-        $result = $conn->query($sql);
-
-        $filmes = [];
-        while ($row = $result->fetch_assoc()) {
-            $filmes[] = $row;
+    case "filmes":
+        if ($acao == "listar") {
+            $sql = "SELECT * FROM filmes";
+            $result = $conn->query($sql);
+            $dados = [];
+            while ($row = $result->fetch_assoc()) {
+                $dados[] = $row;
+            }
+            echo json_encode($dados);
         }
-        echo json_encode($filmes);
-        break;
-
-    // =========================
-    // INSERIR FILME
-    // =========================
-    case "inserir_filme":
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        elseif ($acao == "inserir" && $_SERVER['REQUEST_METHOD'] == "POST") {
             $titulo = $_POST['titulo'] ?? '';
             $ano    = $_POST['ano'] ?? 0;
             $genero = $_POST['genero'] ?? '';
@@ -45,19 +40,11 @@ switch ($acao) {
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sis", $titulo, $ano, $genero);
 
-            if ($stmt->execute()) {
-                echo json_encode(["sucesso" => "Filme inserido!"]);
-            } else {
-                echo json_encode(["erro" => "Falha ao inserir filme"]);
-            }
+            echo $stmt->execute() 
+                ? json_encode(["sucesso" => "Filme inserido!"]) 
+                : json_encode(["erro" => "Falha ao inserir filme"]);
         }
-        break;
-
-    // =========================
-    // ATUALIZAR FILME
-    // =========================
-    case "atualizar_filme":
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        elseif ($acao == "atualizar" && $_SERVER['REQUEST_METHOD'] == "POST") {
             $id     = $_POST['id'] ?? 0;
             $titulo = $_POST['titulo'] ?? '';
             $ano    = $_POST['ano'] ?? 0;
@@ -67,38 +54,132 @@ switch ($acao) {
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sisi", $titulo, $ano, $genero, $id);
 
-            if ($stmt->execute()) {
-                echo json_encode(["sucesso" => "Filme atualizado!"]);
-            } else {
-                echo json_encode(["erro" => "Falha ao atualizar filme"]);
-            }
+            echo $stmt->execute() 
+                ? json_encode(["sucesso" => "Filme atualizado!"]) 
+                : json_encode(["erro" => "Falha ao atualizar filme"]);
         }
-        break;
-
-    // =========================
-    // DELETAR FILME
-    // =========================
-    case "deletar_filme":
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        elseif ($acao == "deletar" && $_SERVER['REQUEST_METHOD'] == "POST") {
             $id = $_POST['id'] ?? 0;
-
             $sql = "DELETE FROM filmes WHERE id=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $id);
 
-            if ($stmt->execute()) {
-                echo json_encode(["sucesso" => "Filme deletado!"]);
-            } else {
-                echo json_encode(["erro" => "Falha ao deletar filme"]);
-            }
+            echo $stmt->execute() 
+                ? json_encode(["sucesso" => "Filme deletado!"]) 
+                : json_encode(["erro" => "Falha ao deletar filme"]);
         }
         break;
 
     // =========================
-    // AÇÃO INVÁLIDA
+    // ATORES
+    // =========================
+    case "atores":
+        if ($acao == "listar") {
+            $sql = "SELECT * FROM atores";
+            $result = $conn->query($sql);
+            $dados = [];
+            while ($row = $result->fetch_assoc()) {
+                $dados[] = $row;
+            }
+            echo json_encode($dados);
+        }
+        elseif ($acao == "inserir" && $_SERVER['REQUEST_METHOD'] == "POST") {
+            $nome         = $_POST['nome'] ?? '';
+            $nacionalidade= $_POST['nacionalidade'] ?? '';
+
+            $sql = "INSERT INTO atores (nome, nacionalidade) VALUES (?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ss", $nome, $nacionalidade);
+
+            echo $stmt->execute() 
+                ? json_encode(["sucesso" => "Ator inserido!"]) 
+                : json_encode(["erro" => "Falha ao inserir ator"]);
+        }
+        elseif ($acao == "atualizar" && $_SERVER['REQUEST_METHOD'] == "POST") {
+            $id            = $_POST['id'] ?? 0;
+            $nome          = $_POST['nome'] ?? '';
+            $nacionalidade = $_POST['nacionalidade'] ?? '';
+
+            $sql = "UPDATE atores SET nome=?, nacionalidade=? WHERE id=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssi", $nome, $nacionalidade, $id);
+
+            echo $stmt->execute() 
+                ? json_encode(["sucesso" => "Ator atualizado!"]) 
+                : json_encode(["erro" => "Falha ao atualizar ator"]);
+        }
+        elseif ($acao == "deletar" && $_SERVER['REQUEST_METHOD'] == "POST") {
+            $id = $_POST['id'] ?? 0;
+            $sql = "DELETE FROM atores WHERE id=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $id);
+
+            echo $stmt->execute() 
+                ? json_encode(["sucesso" => "Ator deletado!"]) 
+                : json_encode(["erro" => "Falha ao deletar ator"]);
+        }
+        break;
+
+    // =========================
+    // ELENCO
+    // =========================
+    case "elenco":
+        if ($acao == "listar") {
+            $sql = "SELECT elenco.id, filmes.titulo, atores.nome, elenco.personagem
+                    FROM elenco
+                    JOIN filmes ON elenco.id_filme = filmes.id
+                    JOIN atores ON elenco.id_ator = atores.id";
+            $result = $conn->query($sql);
+            $dados = [];
+            while ($row = $result->fetch_assoc()) {
+                $dados[] = $row;
+            }
+            echo json_encode($dados);
+        }
+        elseif ($acao == "inserir" && $_SERVER['REQUEST_METHOD'] == "POST") {
+            $id_filme = $_POST['id_filme'] ?? 0;
+            $id_ator  = $_POST['id_ator'] ?? 0;
+            $personagem = $_POST['personagem'] ?? '';
+
+            $sql = "INSERT INTO elenco (id_filme, id_ator, personagem) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("iis", $id_filme, $id_ator, $personagem);
+
+            echo $stmt->execute() 
+                ? json_encode(["sucesso" => "Elenco inserido!"]) 
+                : json_encode(["erro" => "Falha ao inserir elenco"]);
+        }
+        elseif ($acao == "atualizar" && $_SERVER['REQUEST_METHOD'] == "POST") {
+            $id         = $_POST['id'] ?? 0;
+            $id_filme   = $_POST['id_filme'] ?? 0;
+            $id_ator    = $_POST['id_ator'] ?? 0;
+            $personagem = $_POST['personagem'] ?? '';
+
+            $sql = "UPDATE elenco SET id_filme=?, id_ator=?, personagem=? WHERE id=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("iisi", $id_filme, $id_ator, $personagem, $id);
+
+            echo $stmt->execute() 
+                ? json_encode(["sucesso" => "Elenco atualizado!"]) 
+                : json_encode(["erro" => "Falha ao atualizar elenco"]);
+        }
+        elseif ($acao == "deletar" && $_SERVER['REQUEST_METHOD'] == "POST") {
+            $id = $_POST['id'] ?? 0;
+            $sql = "DELETE FROM elenco WHERE id=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $id);
+
+            echo $stmt->execute() 
+                ? json_encode(["sucesso" => "Elenco deletado!"]) 
+                : json_encode(["erro" => "Falha ao deletar elenco"]);
+        }
+        break;
+
+    // =========================
+    // DEFAULT
     // =========================
     default:
-        echo json_encode(["erro" => "Ação inválida"]);
+        echo json_encode(["erro" => "Entidade ou ação inválida"]);
         break;
 }
 
