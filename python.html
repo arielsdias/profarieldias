@@ -107,20 +107,61 @@
 ======================= */
 const courseData = {
     modules: [
+        //Módulo 1
         {
-            title: "Módulo 1: Noções Básicas de Python",
+            title: "Módulo 1: Fundamentos da Programação",
             topics: [
                 { 
                     id: "1.1",
                     type: "theory",
-                    title: "Introdução ao Python e Print",
+                    title: "Pensamento Computacional",
+                    gamma: "https://introducao-python-hydl3k5.gamma.site/",
+                    video: "https://player.vimeo.com/video/123456789"
+                }
+                ,
+                { 
+                    id: "1.2",
+                    type: "theory",
+                    title: "Sistema Operacional e Algoritmo",
+                    gamma: "https://introducao-python-hydl3k5.gamma.site/",
+                    video: "https://player.vimeo.com/video/123456789"
+                }
+                ,
+                { 
+                    id: "1.1.1",
+                    type: "practice",
+                    title: "Prática: Olá, Mundo!",
+                    problemStatement:
+`Aqui começa o caminho do verdadeiro desenvolvedor!
+
+- Crie um programa que exiba exatamente:
+Olá, Mundo!
+
+💡 Dica: Digite
+print("Olá, mundo!")
+
+após digitar o código, pressione o botão Executar Código.`,
+                    respostaEsperada: "Olá, Mundo!"
+                }
+            ]
+        }
+            
+        , 
+        //Módulo 2
+        {
+            title: "Módulo 2: Noções Básicas de Python",
+            topics: [
+                { 
+                    id: "2.1",
+                    type: "theory",
+                    title: "Declarações, atribuições e comentários",
                     gamma: "https://introducao-python-hydl3k5.gamma.site/",
                     video: "https://player.vimeo.com/video/123456789"
                 }
                 ,
 
                 { 
-                    id: "1.2",
+                    id: "2.1.1",
                     type: "practice",
                     title: "Prática: Olá, Mundo!",
                     problemStatement:
@@ -138,7 +179,7 @@ após digitar o código, pressione o botão Executar Código.`,
                 ,
 
                 { 
-                    id: "1.3",
+                    id: "2.1.2",
                     type: "practice",
                     title: "Prática: Primeiro código Python!",
                     problemStatement:
@@ -153,7 +194,7 @@ Clique no botão “Executar Código” para ver o resultado.`,
                 ,
 
                 { 
-                    id: "1.4",
+                    id: "2.1.3",
                     type: "practice",
                     title: "Prática: Comentando código.",
                     problemStatement:
@@ -169,7 +210,7 @@ print("comente essa linha com aspas triplas")
                 ,
 
                 { 
-                    id: "1.5",
+                    id: "2.1.4",
                     type: "practice",
                     title: "Prática: Atribuição de variáveis.",
                     problemStatement:
@@ -199,8 +240,88 @@ ____
 ____
 `
                 }
+                ,
+                { 
+                    id: "2.2",
+                    type: "theory",
+                    title: "Literais Numéricos em Python",
+                    gamma: "https://python-literais-numerico-34ytocb.gamma.site/",
+                    video: "https://player.vimeo.com/video/123456789"
+                }
+                ,
+                { 
+                    id: "2.2.1",
+                    type: "practice",
+                    title: "Prática: Tipos numéricos e base.",
+                    problemStatement:
+`
+<b>Crie as variáveis numéricas a seguir, seguindo o exemplo do código:</b>
+-> a contendo o número binário 0b1101
+-> b contendo o número octal 0o27
+-> c contendo o número hexadecimal 0xA2
+-> d contendo o número real 3.75
+-> e contendo o número complexo 4 + 2j
+
+<b>Depois:</b>
+-> Imprima cada variável.
+-> Mostre o tipo usando a função type para cada uma das variáveis.
+-> Converta a variável hexadecimal c para decimal usando a função int.
+`,
+                    respostaEsperada: "13 23 162 3.75 (4+2j)\n<class 'int'>\n<class 'int'>\n<class 'int'>\n<class 'float'>\n<class 'complex'>\n162",
+                    codigoPreEscrito: `a=0b1101
+# Coloque abaixo as demais variáveis b, c, d, e
+
+# Imprima, na mesma linha, o valor das 5 variáveis
+
+# Imprima, linha a linha, o tipo de cada variável usando type()
+
+# Converta o valor hexadecimal da variável c para inteiro usando a função int()
+`
+                }
+                ,
+                { 
+                    id: "2.3",
+                    type: "theory",
+                    title: "Literais String e Especiais",
+                    gamma: "https://python-literais-j8y3gk3.gamma.site/",
+                    video: "https://player.vimeo.com/video/123456789"
+                }
+                ,
+                { 
+                    id: "2.3.1",
+                    type: "practice",
+                    title: "Prática: Tipos String.",
+                    problemStatement:
+`
+Dada a string:
+
+mensagem = "avançando na linguagem Python"
+
+Faça:
+
+<b>1. </b>Mostre o <b> primeiro caractere </b> 
+<b>2. </b>Mostre o <b> último caractere </b>
+<b>3. </b>Utilizando fatiamento, crie uma substring contendo apenas a palavra <i>linguagem</i>
+<b>4. </b>Utilizando fatiamento, crie outra substring contendo apenas a palavra <i>na</i>
+`,
+                    respostaEsperada: "a\nn\nlinguagem\nna",
+                    codigoPreEscrito: `mensagem = "avançando na linguagem Python"
+
+# Mostre o primeiro caractere
+
+# Mostre o último caractere
+
+# Utilizando fatiamento, crie uma substring contendo apenas a palavra linguagem
+
+# Utilizando fatiamento, crie uma outra substring contendo apenas a palavra na
+`
+                }
+
             ]
         }
+
+
+
     ]
 };
 
