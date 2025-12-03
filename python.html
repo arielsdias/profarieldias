@@ -116,7 +116,8 @@ const courseData = {
                     title: "Introdução ao Python e Print",
                     gamma: "https://introducao-python-hydl3k5.gamma.site/",
                     video: "https://player.vimeo.com/video/123456789"
-                },
+                }
+                ,
 
                 { 
                     id: "1.2",
@@ -128,9 +129,13 @@ const courseData = {
 - Crie um programa que exiba exatamente:
 Olá, Mundo!
 
-💡 Dica: Após digitar o código, pressione o botão Executar Código.`,
+💡 Dica: Digite
+print("Olá, mundo!")
+
+após digitar o código, pressione o botão Executar Código.`,
                     respostaEsperada: "Olá, Mundo!"
-                },
+                }
+                ,
 
                 { 
                     id: "1.3",
@@ -144,6 +149,55 @@ print(5 + 2)
 
 Clique no botão “Executar Código” para ver o resultado.`,
                     respostaEsperada: "7"
+                }
+                ,
+
+                { 
+                    id: "1.4",
+                    type: "practice",
+                    title: "Prática: Comentando código.",
+                    problemStatement:
+`Observe o código que já foi carregado no editor. Comente todas as linhas, utilize o comentário que for melhor!
+Por fim, clique no botão “Executar Código” para ver o resultado.`,
+                    respostaEsperada: "Sou programador!!",
+                    codigoPreEscrito: `print("comente com hashtag")
+print("Sou programador!!")
+print("comente essa linha com aspas triplas")
+print("comente essa linha com aspas triplas")
+`
+                }
+                ,
+
+                { 
+                    id: "1.5",
+                    type: "practice",
+                    title: "Prática: Atribuição de variáveis.",
+                    problemStatement:
+`
+Em Python, uma variável permite que você faça referência a um valor com um nome. 
+Para criar uma variável x com valor 5, usamos =, como neste exemplo:\n
+x=5
+\n
+Agora você pode usar o nome dessa variável, x, em vez do valor real, 5.
+\n
+Lembre-se de que = em Python significa atribuição, ele não testa a igualdade! 
+Faça o teste no exercício ao lado substituindo ____ pelo seu código.
+
+\n
+
+Crie uma variável chamada ano com valor 2026.
+Verifique essa variável digitando print(ano) no código.
+
+
+
+`,
+                    respostaEsperada: "2026",
+                    codigoPreEscrito: `# Crie a variável chamada ano
+____
+
+# Print o ano na tela.
+____
+`
                 }
             ]
         }
@@ -398,13 +452,33 @@ function initMonacoPracticeEditor() {
     require(["vs/editor/editor.main"], function () {
 
         const topicId = selectedTopic.id;
-        const initial = practiceCode[topicId] || "# Escreva seu código Python aqui\n";
+
+        // 1️⃣ Prioridade: código salvo anteriormente
+        if (practiceCode[topicId]) {
+            initialValue = practiceCode[topicId];
+        }
+
+        // 2️⃣ Caso não exista salvo, usa codigoPreEscrito (se existir)
+        else if (selectedTopic.codigoPreEscrito) {
+            initialValue = selectedTopic.codigoPreEscrito;
+        }
+
+        // 3️⃣ Padrão
+        else {
+            initialValue = "# Escreva seu código Python aqui\n";
+        }
 
         editorPractice = monaco.editor.create(
             document.getElementById("editor"),
-            { value: initial, language: "python", theme: "vs-dark", automaticLayout: true }
+            {
+                value: initialValue,
+                language: "python",
+                theme: "vs-dark",
+                automaticLayout: true
+            }
         );
 
+        // Salva mudanças automaticamente
         editorPractice.onDidChangeModelContent(() => {
             practiceCode[topicId] = editorPractice.getValue();
             saveState();
@@ -412,6 +486,7 @@ function initMonacoPracticeEditor() {
 
     });
 }
+
 
 
 /* =======================
