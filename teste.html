@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Ambiente de Estudo — Pandas e NumPy</title>
+
+<!-- MONACO EDITOR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+
+<!-- PYODIDE (Python real no navegador) -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js"></script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f7f7f7;
+    }
+    #container {
+        display: flex;
+        gap: 20px;
+        height: 450px;
+    }
+    #exercise {
+        width: 35%;
+        background: white;
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 5px;
+    }
+    #editor {
+        width: 65%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    #output {
+        margin-top: 20px;
+        padding: 10px;
+        background: #272822;
+        color: #eee;
+        min-height: 120px;
+        border-radius: 5px;
+        white-space: pre-wrap;
+    }
+    button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+    <!-- ENUNCIADO DO EXERCÍCIO -->
+    <div id="exercise">
+        <h2>Exercício</h2>
+        <p>
+            Utilize <b>Pandas</b> e <b>NumPy</b> para criar uma Series com os valores:
+        </p>
+        <pre>[10, 20, 30, 40, 50]</pre>
+        <p>
+            Em seguida:
+        </p>
+        <ul>
+            <li>Calcule a <b>média</b> desses valores;</li>
+            <li>Guarde o resultado em uma variável chamada <code>media</code>;</li>
+            <li>Use <code>print(media)</code> para exibir.</li>
+        </ul>
+
+        <p><b>Resultado esperado:</b> <code>30.0</code></p>
+    </div>
+
+    <!-- MONACO EDITOR -->
+    <div id="editor"></div>
+
+</div>
+
+<button id="run">Executar Código</button>
+
+<h3>Saída:</h3>
+<div id="output">Carregando Pyodide...</div>
+
+<script>
+// ===================================================
+// 1. Inicializar Monaco Editor
+// ===================================================
+
+require.config({
+    paths: { "vs": "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs" }
+});
+
+require(["vs/editor/editor.main"], function () {
+
+    window.editor = monaco.editor.create(document.getElementById("editor"), {
+        value:
+`import numpy as np
+import pandas as pd
+
+# Sua solução aqui
+valores = pd.Series([10, 20, 30, 40, 50])
+media = valores.mean()
+print(media)
+`,
+        language: "python",
+        theme: "vs-dark",
+        automaticLayout: true
+    });
+
+});
+
+
+// ===================================================
+// 2. Carregar Pyodide corretamente
+// ===================================================
+
+let pyodide = null;
+
+async function startPyodide() {
+    try {
+        pyodide = await loadPyodide({
+            indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.0/full/"
+        });
+
+        await pyodide.loadPackage(["numpy", "pandas"]);
+
+        document.getElementById("output").innerText =
+            "Pyodide carregado! Pandas e NumPy prontos!";
+
+    } catch (e) {
+        document.getElementById("output").innerText =
+            "Erro ao carregar Pyodide:\n" + e;
+    }
+}
+
+startPyodide();
+
+
+// ===================================================
+// 3. Botão EXECUTAR — roda o Python do aluno
+// ===================================================
+
+document.getElementById("run").onclick = async function () {
+    const outputBox = document.getElementById("output");
+
+    if (!pyodide) {
+        outputBox.innerText = "Ainda carregando o Pyodide...";
+        return;
+    }
+
+    const userCode = editor.getValue();
+    outputBox.innerText = "";
+
+    try {
+        // Vamos executar o código do aluno e, em seguida, forçar a avaliação da variável 'media'
+        const wrappedCode = `
+import sys
+from io import StringIO
+
+_buffer = StringIO()
+_stdout_original = sys.stdout
+sys.stdout = _buffer
+
+${userCode}
+
+sys.stdout = _stdout_original
+_output_text = _buffer.getvalue()
+_output_text, media
+`;
+
+        const result = await pyodide.runPythonAsync(wrappedCode);
+
+        // result será uma tupla: (texto_do_print, valor_de_media)
+        const outputText = result[0];
+        const mediaValue = result[1];
+
+        outputBox.innerText = outputText ? outputText.toString() : "(sem saída)";
+
+        validar(mediaValue);
+
+    } catch (err) {
+        outputBox.innerText = "Erro:\n" + err;
+    }
+};
+
+
+// ===================================================
+// 4. Validação automática do exercício
+// ===================================================
+
+function validar(mediaValue) {
+    const outputBox = document.getElementById("output");
+
+    if (mediaValue === 30 || mediaValue === 30.0) {
+        outputBox.innerText += "\n\n✔ Correto! Pode avançar.";
+    } else {
+        outputBox.innerText += `\n\n✘ Ainda não está correto. Valor calculado: ${mediaValue}`;
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Curso Python</title>
+
+<!-- TAILWIND -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- LUCIDE ICONS -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<!-- MONACO EDITOR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+
+<!-- PYODIDE -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js"></script>
+
+<style>
+    .sidebar-open { width: 320px; }
+    .sidebar-closed { width: 0px; }
+
+    @keyframes loader-bar {
+        0% { transform: translateX(-100%); }
+        50% { transform: translateX(-10%); }
+        100% { transform: translateX(100%); }
+    }
+
+    .animate-loader-bar {
+        animation: loader-bar 1.5s infinite;
+    }
+</style>
+</head>
+
+<body class="h-screen bg-gradient-to-br from-slate-50 to-slate-100 overflow-hidden">
+
+<!-- LOADING GLOBAL ESTILO PLATAFORMA -->
+<div id="globalLoader"
+     class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950/90 text-white transition-opacity duration-500">
+  <div class="mb-4 text-2xl font-semibold flex items-center gap-3">
+    <span class="inline-flex h-10 w-10 rounded-full border-4 border-emerald-400 border-t-transparent animate-spin"></span>
+    <span>Carregando ambiente de estudo...</span>
+  </div>
+  <div class="w-64 h-2 bg-slate-800 rounded-full overflow-hidden">
+    <div class="h-full bg-gradient-to-r from-emerald-400 via-sky-400 to-indigo-400 animate-loader-bar"></div>
+  </div>
+  <p class="mt-4 text-sm text-slate-300">
+    Preparando editor, vídeos e exercícios interativos
+  </p>
+</div>
+
+<div class="flex h-full">
+
+    <!-- ▬▬▬▬▬▬▬▬▬▬▬▬▬▬ SIDEBAR ▬▬▬▬▬▬▬▬▬▬▬▬▬▬ -->
+    <aside id="sidebar" class="sidebar-open transition-all duration-300 bg-white shadow-2xl overflow-hidden">
+
+        <div class="p-6 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+            <h1 class="text-2xl font-bold mb-1">Curso Python</h1>
+            <p class="text-sm text-blue-100 mb-4">Do zero ao avançado</p>
+
+            <div class="bg-white/20 rounded-lg p-3">
+                <div class="flex justify-between text-sm mb-2">
+                    <span class="font-medium">Seu Progresso</span>
+                    <span id="progressText">0%</span>
+                </div>
+
+                <div class="w-full bg-white/30 rounded-full h-2.5">
+                    <div id="progressBar"
+                         class="bg-yellow-400 h-2.5 rounded-full transition-all duration-500"
+                         style="width: 0%"></div>
+                </div>
+
+                <div id="progressCount" class="mt-2 text-xs text-blue-100">0 de 0 tópicos</div>
+            </div>
+        </div>
+
+        <div id="modulesList" class="overflow-y-auto h-[calc(100vh-220px)]"></div>
+
+    </aside>
+
+    <!-- ▬▬▬▬▬▬▬▬▬▬▬▬▬▬ CONTEÚDO PRINCIPAL ▬▬▬▬▬▬▬▬▬▬▬▬▬▬ -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+
+        <!-- HEADER -->
+        <header class="bg-white shadow-md px-6 py-4 flex items-center gap-4">
+            <button id="toggleSidebar" class="p-2 hover:bg-slate-100 rounded-lg">
+                <i data-lucide="menu"></i>
+            </button>
+
+            <div id="topicIcon"></div>
+
+            <div class="flex-1">
+                <h2 id="topicTitle" class="text-xl font-bold text-slate-800">Selecione um tópico</h2>
+                <p id="topicType" class="text-sm text-slate-500"></p>
+            </div>
+
+            <button id="markCompleteBtn"
+                class="hidden px-6 py-2.5 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 flex items-center gap-2 text-sm font-semibold">
+                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                Concluir Tópico
+            </button>
+        </header>
+
+        <!-- ÁREA DE CONTEÚDO -->
+        <section id="contentArea" class="flex-1 overflow-y-auto p-6">
+            <p class="text-slate-600">Selecione um tópico à esquerda para começar.</p>
+        </section>
+
+    </main>
+</div>
+
+
+<script>
+/* =====================================================
+   DADOS DO CURSO
+===================================================== */
+const courseData = {
+    modules: [
+        {
+            title: "Módulo 1: Noções Básicas de Python",
+            topics: [
+                { 
+                    id: "1.1",
+                    type: "theory",
+                    title: "Introdução ao Python e Print",
+                    gamma: "https://introducao-python-hydl3k5.gamma.site/",
+                    video: "https://player.vimeo.com/video/123456789"
+                },
+                { 
+                    id: "1.2",
+                    type: "practice",
+                    title: "Prática: Olá, Mundo!", 
+                    problemStatement: "Aqui começa o caminho do verdadeiro desenvolvedor! \nCrie um programa que exiba exatamente:\nOlá, Mundo! \nDica: Após digitar o código, pressione o botão Executar Código.",
+                    respostaEsperada: "Olá, Mundo!"
+                },
+                { 
+                    id: "1.3",
+                    type: "practice",
+                    title: "Prática: Primeiro código Python!", 
+                    problemStatement: "É hora de rodar seu primeiro código Python! \nDigite o comando print(5 + 2) clique no botão “Executar código” para ver o resultado.",
+                    respostaEsperada: "7"
+                }
+            ]
+        },
+
+        {
+            title: "Módulo 1: Noções Básicas de Python",
+            topics: [
+                { 
+                    id: "1.1",
+                    type: "theory",
+                    title: "Introdução ao Python e Print",
+                    gamma: "https://gamma.app/embed/seu-embed-aqui",
+                    video: "https://player.vimeo.com/video/123456789"
+                },
+                { 
+                    id: "1.2",
+                    type: "practice",
+                    title: "Prática: Olá, Mundo!", 
+                    problemStatement: "Crie um programa que exiba exatamente:\nOlá, Mundo!",
+                    respostaEsperada: "Olá, Mundo!"
+                }
+            ]
+        }
+    ]
+};
+
+const STORAGE_KEY = "curso_python_estado_v1";
+
+let selectedTopic = null;
+let completed = new Set();
+let practiceCode = {};
+
+let pyodidePractice = null;
+let editorPractice = null;
+
+
+/* =====================================================
+   LOCALSTORAGE: CARREGAR ESTADO
+===================================================== */
+function loadState() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return null;
+
+        const data = JSON.parse(raw);
+
+        if (Array.isArray(data.completed)) {
+            completed = new Set(data.completed);
+        }
+
+        if (data.practiceCode && typeof data.practiceCode === "object") {
+            practiceCode = data.practiceCode;
+        }
+
+        return data;
+    } catch (e) {
+        console.error("Erro ao carregar estado:", e);
+        return null;
+    }
+}
+
+function saveState() {
+    try {
+        const state = {
+            completed: Array.from(completed),
+            lastTopicId: selectedTopic ? selectedTopic.id : null,
+            practiceCode
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+        console.error("Erro ao salvar estado:", e);
+    }
+}
+
+function findTopicById(id) {
+    for (const mod of courseData.modules) {
+        for (const top of mod.topics) {
+            if (top.id === id) return top;
+        }
+    }
+    return null;
+}
+
+
+/* =====================================================
+   RENDERIZAR SIDEBAR
+===================================================== */
+function renderSidebar() {
+    const modulesList = document.getElementById("modulesList");
+    modulesList.innerHTML = "";
+
+    courseData.modules.forEach(mod => {
+        const moduleDiv = document.createElement("div");
+
+        moduleDiv.innerHTML = `
+            <div class="p-4 bg-slate-100 font-semibold border-b">${mod.title}</div>
+        `;
+
+        mod.topics.forEach(topic => {
+            const isDone = completed.has(topic.id);
+            const isSelected = selectedTopic && selectedTopic.id === topic.id;
+
+            const topicDiv = document.createElement("div");
+
+            topicDiv.className =
+                "p-3 pl-6 flex gap-3 items-center cursor-pointer transition " +
+                (isSelected
+                    ? "bg-blue-50 border-l-4 border-blue-600"
+                    : "hover:bg-slate-50 border-l-4 border-transparent");
+
+            topicDiv.innerHTML = `
+                <i data-lucide="${isDone ? 'check-circle' : ''}" 
+                   class="w-5 h-5 ${isDone ? 'text-green-600' : ''}"></i>
+
+                <i data-lucide="${topic.type === 'theory' ? 'book-open' : 'code'}"
+                   class="w-4 h-4"></i>
+
+                <span class="${isSelected ? 'font-semibold text-blue-700' : ''}">
+                    ${topic.title}
+                </span>
+            `;
+
+            topicDiv.onclick = () => {
+                loadTopic(topic);
+                renderSidebar();
+            };
+
+            moduleDiv.appendChild(topicDiv);
+        });
+
+        modulesList.appendChild(moduleDiv);
+    });
+
+    lucide.createIcons();
+}
+
+
+/* =====================================================
+   CARREGAR TÓPICO
+===================================================== */
+function loadTopic(topic) {
+    selectedTopic = topic;
+
+    document.getElementById("topicTitle").textContent = topic.title;
+    document.getElementById("topicType").textContent =
+        topic.type === "theory" ? "📖 Conteúdo Teórico" : "💻 Exercício Prático";
+
+    document.getElementById("markCompleteBtn").classList.remove("hidden");
+
+    /* ---------------------------------------------------
+   TEORIA — AGORA COM 2 ABAS (VÍDEO / GAMMA)
+--------------------------------------------------- */
+if (topic.type === "theory") {
+
+    document.getElementById("contentArea").innerHTML = `
+
+        <!-- NAV TABS -->
+        <div class="border-b border-slate-300 mb-4 flex gap-2">
+            <button id="tabVideo"
+                class="px-4 py-2 text-sm font-semibold text-blue-600 border-b-2 border-blue-600">
+                Vídeo da Aula
+            </button>
+
+            <button id="tabGamma"
+                class="px-4 py-2 text-sm font-semibold text-slate-500 hover:text-blue-600 transition">
+                Material Interativo
+            </button>
+        </div>
+
+        <!-- CONTEÚDO -->
+        <div id="tabContent" class="w-full">
+
+            <!-- ABA 1: VÍDEO -->
+            <div id="contentVideo" class="bg-white shadow rounded-xl border p-4">
+                ${
+                    topic.video
+                    ? `<iframe src="${topic.video}" 
+                               class="w-full h-[600px] rounded-lg shadow"
+                               frameborder="0" allowfullscreen></iframe>`
+                    : `<p class="text-slate-500">Nenhum vídeo disponível.</p>`
+                }
+            </div>
+
+            <!-- ABA 2: GAMMA (oculta por padrão) -->
+            <div id="contentGamma" class="hidden bg-white shadow rounded-xl border p-4">
+                ${
+                    topic.gamma
+                    ? `<iframe src="${topic.gamma}" 
+                               class="w-full h-[600px] rounded-lg shadow"
+                               frameborder="0" allowfullscreen></iframe>`
+                    : `<p class="text-slate-500">Nenhum material disponível.</p>`
+                }
+            </div>
+
+        </div>
+    `;
+
+    // --- LÓGICA DAS ABAS ---
+    const tabVideo = document.getElementById("tabVideo");
+    const tabGamma = document.getElementById("tabGamma");
+
+    const contentVideo = document.getElementById("contentVideo");
+    const contentGamma = document.getElementById("contentGamma");
+
+    tabVideo.onclick = () => {
+        tabVideo.classList.add("text-blue-600", "border-blue-600");
+        tabGamma.classList.remove("text-blue-600", "border-blue-600");
+        tabGamma.classList.add("text-slate-500");
+
+        contentVideo.classList.remove("hidden");
+        contentGamma.classList.add("hidden");
+    };
+
+    tabGamma.onclick = () => {
+        tabGamma.classList.add("text-blue-600", "border-blue-600");
+        tabVideo.classList.remove("text-blue-600", "border-blue-600");
+        tabVideo.classList.add("text-slate-500");
+
+        contentGamma.classList.remove("hidden");
+        contentVideo.classList.add("hidden");
+    };
+}
+
+
+    /* ---------------------------------------------------
+       PRÁTICA — MONACO + PYODIDE + SAÍDA
+    --------------------------------------------------- */
+    else {
+        document.getElementById("contentArea").innerHTML = `
+        
+            <div id="container" style="display:flex; gap:20px; height:370px;">
+
+                <div id="exercise"
+                     style="width:45%; background:white; border:1px solid #ccc;
+                            padding:15px; border-radius:5px; overflow:auto;">
+                    <h2 style="margin-top:0;">Exercício</h2>
+                    <pre>${topic.problemStatement}</pre>
+                    <p><b>Resultado esperado:</b></p>
+                    <pre>${topic.respostaEsperada}</pre>
+                </div>
+
+                <div id="editor"
+                     style="width:55%; background: #1e1e1e; padding-top: 8px; border:1px solid #ccc; border-radius:5px;"></div>
+            </div>
+
+            <button id="run"
+                    class="mt-5 px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 text-sm font-semibold">
+                Executar Código
+            </button>
+
+            <h3 class="mt-4 font-semibold text-slate-800">Saída:</h3>
+            <div id="output"
+                 style="margin-top:10px; padding:10px; background:#272822; color:#eee;
+                        min-height:120px; border-radius:5px; white-space:pre-wrap;">
+                Inicializando interpretador Python...
+            </div>
+        `;
+
+        initMonacoPracticeEditor();
+        loadPyodideForPractice();
+    }
+
+    updateProgress();
+    saveState();
+}
+
+
+/* =====================================================
+   MONACO EDITOR
+===================================================== */
+function initMonacoPracticeEditor() {
+
+    require.config({
+        paths: { "vs": "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs" }
+    });
+
+    require(["vs/editor/editor.main"], function () {
+
+        const topicId = selectedTopic ? selectedTopic.id : null;
+        const initialValue = (topicId && practiceCode[topicId]) 
+            ? practiceCode[topicId]
+            : "# Escreva seu código Python aqui\n";
+
+        editorPractice = monaco.editor.create(document.getElementById("editor"), {
+            value: initialValue,
+            language: "python",
+            theme: "vs-dark",
+            automaticLayout: true
+        });
+
+        const outputEl = document.getElementById("output");
+        if (outputEl) {
+            outputEl.innerText = "Python carregando...";
+        }
+
+        editorPractice.onDidChangeModelContent(() => {
+            const tId = selectedTopic ? selectedTopic.id : null;
+            if (!tId) return;
+            practiceCode[tId] = editorPractice.getValue();
+            saveState();
+        });
+    });
+}
+
+
+/* =====================================================
+   PYODIDE
+===================================================== */
+async function loadPyodideForPractice() {
+
+    const outputBox = document.getElementById("output");
+    if (!outputBox) return;
+
+    if (!pyodidePractice) {
+        outputBox.innerText = "Carregando engine Python no navegador...";
+        pyodidePractice = await loadPyodide({
+            indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.0/full/"
+        });
+    }
+
+    outputBox.innerText = "Python carregado! Pronto para executar seu código.";
+
+    const runBtn = document.getElementById("run");
+    if (runBtn) {
+        runBtn.onclick = async () => runStudentCode();
+    }
+}
+
+
+/* =====================================================
+   EXECUTAR CÓDIGO DO ALUNO
+===================================================== */
+async function runStudentCode() {
+
+    const code = editorPractice.getValue();
+    const outputBox = document.getElementById("output");
+
+    outputBox.innerText = "Executando código...\n";
+
+    try {
+        const wrapped = `
+import sys
+from io import StringIO
+
+buf = StringIO()
+old = sys.stdout
+sys.stdout = buf
+
+${code}
+
+sys.stdout = old
+buf.getvalue()
+`;
+
+        let result = await pyodidePractice.runPythonAsync(wrapped);
+
+        outputBox.innerText = result || "(sem saída)";
+        validatePractice(result || "");
+
+    } catch (err) {
+        outputBox.innerText = "Erro:\n" + err;
+    }
+}
+
+
+/* =====================================================
+   SIMILARIDADE
+===================================================== */
+function similarity(a, b) {
+    a = a.trim().toLowerCase();
+    b = b.trim().toLowerCase();
+    const len = Math.max(a.length, b.length);
+    if (len === 0) return 100;
+
+    let iguais = 0;
+    for (let i = 0; i < Math.min(a.length, b.length); i++) {
+        if (a[i] === b[i]) iguais++;
+    }
+    return (iguais / len) * 100;
+}
+
+
+/* =====================================================
+   VALIDAÇÃO DO EXERCÍCIO (NÃO CONCLUI AUTOMÁTICO)
+===================================================== */
+function validatePractice(output) {
+
+    const expected = selectedTopic.respostaEsperada;
+    const pct = similarity(output, expected);
+    const box = document.getElementById("output");
+
+    if (pct >= 80) {
+        box.innerText += `\n\n✔ Similaridade ${pct.toFixed(1)}% — Solução aceita!`;
+    } else {
+        box.innerText += `\n\n✘ Similaridade ${pct.toFixed(1)}%. Ajuste o código e tente novamente.`;
+    }
+}
+
+
+/* =====================================================
+   PROGRESSO
+===================================================== */
+function updateProgress() {
+    const total = courseData.modules.reduce((acc, m) => acc + m.topics.length, 0);
+    const done = completed.size;
+    const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+
+    document.getElementById("progressText").textContent = pct + "%";
+    document.getElementById("progressBar").style.width = pct + "%";
+    document.getElementById("progressCount").textContent = `${done} de ${total} tópicos`;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+document.getElementById("toggleSidebar").onclick = () => {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("sidebar-open");
+    sidebar.classList.toggle("sidebar-closed");
+};
+
+/* =====================================================
+   CONCLUIR TÓPICO (AGORA É SÓ AQUI!)
+===================================================== */
+document.getElementById("markCompleteBtn").onclick = () => {
+    if (!selectedTopic) return;
+    completed.add(selectedTopic.id);
+    updateProgress();
+    renderSidebar();
+    saveState();
+};
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+const savedState = loadState();
+renderSidebar();
+updateProgress();
+
+if (savedState && savedState.lastTopicId) {
+    const lastTopic = findTopicById(savedState.lastTopicId);
+    if (lastTopic) {
+        loadTopic(lastTopic);
+    }
+}
+
+/* Loader global some depois que tudo carregar */
+window.addEventListener("load", () => {
+    const gl = document.getElementById("globalLoader");
+    if (gl) {
+        gl.classList.add("opacity-0", "pointer-events-none");
+        setTimeout(() => { gl.style.display = "none"; }, 200);
+    }
+});
+
+lucide.createIcons();
+</script>
+
+</body>
+</html>
