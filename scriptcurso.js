@@ -481,5 +481,24 @@ document.addEventListener("click", e => {
     if (e.target.id === "run") runStudentCode();
 });
 
+
+/* ============================================================
+   TOGGLE SIDEBAR
+============================================================ */
+document.getElementById("toggleSidebar").addEventListener("click", () => {
+    const sidebar = document.getElementById("sidebar");
+
+    if (sidebar.classList.contains("sidebar-open")) {
+        // Fecha
+        sidebar.classList.remove("sidebar-open");
+        sidebar.classList.add("sidebar-closed");
+    } else {
+        // Abre
+        sidebar.classList.remove("sidebar-closed");
+        sidebar.classList.add("sidebar-open");
+    }
+});
+
+
 loadCourseData();
 lucide.createIcons();
