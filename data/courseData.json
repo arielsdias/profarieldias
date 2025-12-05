@@ -161,74 +161,68 @@
         },
 
         {
-          "id": "2.1.3",
+          "id": "3.1.3",
           "type": "practice",
-          "title": "Prática: Atribuição de variáveis.",
-          "problemStatement": "Crie uma variável chamada ano com valor 2026.\nEm seguida, use print(ano).\nLembre-se: '=' faz atribuição.",
-          "respostaEsperada": "2026",
-          "codigoPreEscrito": "# Crie a variável ano\n____\n\n# Mostre o valor\n____"
+          "title": "Prática: Cálculo de média.",
+          "problemStatement": "Você está planejando uma viagem com alguns amigos e precisa calcular os custos totais da viagem. Você levantou os seguintes valores:\n\n <b> -> </b> Passagem aérea: R$ 3000,00\n <b> -> </b> Alimentação: R$ 160,00 por dia de viagem\n <b> -> </b> Diária da hospedagem: R$ 450,00 \n\n Considerando que você permanecerá nesse local por <b>8 dias</b>, crie um programa que calcule o total de gasto com a viagem.\n\n\n <h3><b> Instrução: </b></h3>\n\n Crie as variáveis de <b>passagem</b>, <b>alimentacao</b> e <b>hospesagem</b>. Note que são 8 dias, então será necessário <b>multiplicar</b> o valor da alimentação e hospedagem por 8 e <b>somar</b> o total!",
+          "respostaEsperada": "7880",
+          "codigoPreEscrito": "# Declare e inicie aqui abaixo as variáveis \n\n\n# Desenvolva a lógica apresentada no problema acima."
         },
 
         {
-          "id": "2.2",
+          "id": "3.2",
           "type": "theory",
-          "title": "Literais Numéricos em Python",
+          "title": "Operadores de comparação",
           "gamma": "https://python-literais-numerico-34ytocb.gamma.site/",
           "video": "https://player.vimeo.com/video/123456789"
         },
-
         {
-          "id": "2.2.1",
+          "id": "3.2.1",
           "type": "practice",
-          "title": "Prática: Tipos numéricos e base.",
-          "problemStatement": "Crie variáveis numéricas nas bases binária, octal e hexadecimal, além de float e complex.\nImprima cada valor e seu tipo.",
-          "respostaEsperada": "13 23 162 3.75 (4+2j)\n<class 'int'>\n<class 'int'>\n<class 'int'>\n<class 'float'>\n<class 'complex'>\n162",
-          "codigoPreEscrito": "a = 0b1101\n# Crie b, c, d, e\n\n# Imprima tudo na mesma linha\n\n# Mostre o tipo de cada variável\n\n# Converta c para decimal"
+          "title": "Prática: Testando os operadores.",
+          "problemStatement": "Complete o código ao lado colocando os operadores and e or, depois, verifique as saídas.",
+          "respostaEsperada": "\nA altura é maior que o limite? False\nA altura é menor que o limite? True\nA altura é igual ao limite? False",
+          "codigoPreEscrito": "altura = 1.70\nlimite=2.00\n\nprint(\"A altura é maior que o limite?\",altura__limite)\nprint(\"A altura é menor que o limite?\",altura__limite)\nprint(\"A altura é igual ao limite?\",altura__limite)"
         },
-
         {
-          "id": "2.3",
+          "id": "3.2.2",
+          "type": "practice",
+          "title": "Prática: Comparando a idade.",
+          "problemStatement": "Crie uma variável chamada idade e que recebe o valor 16. Em seguida, faça uma comparação se o valor desta variável é maior que 18. A resposta deverá ser True ou Fase.",
+          "respostaEsperada": "False",
+          "codigoPreEscrito": "# Declare aqui a variável idade recebendo 16\n\n# Realize a comparação se a variável idade é maior que 18."
+        },
+        {
+          "id": "3.3",
           "type": "theory",
-          "title": "Literais String e Especiais",
+          "title": "Operadores lógicos",
           "gamma": "https://python-literais-j8y3gk3.gamma.site/",
           "video": "https://player.vimeo.com/video/123456789"
         },
 
         {
-          "id": "2.3.1",
+          "id": "3.3.1",
           "type": "practice",
-          "title": "Prática: Tipos String.",
-          "problemStatement": "Dada a string:\n\nmensagem = \"avançando na linguagem Python\"\n\n1. Mostre o primeiro caractere\n2. Mostre o último caractere\n3. Extraia somente a palavra 'linguagem'\n4. Extraia somente a palavra 'na'",
+          "title": "Prática: Testando os operadores.",
+          "problemStatement": "Complete o código ao lado colocando os operadores and e or, depois, verifique as saídas. Siga o código de exemplo.",
           "respostaEsperada": "a\nn\nlinguagem\nna",
-          "codigoPreEscrito": "mensagem = \"avançando na linguagem Python\"\n\n# Mostre o primeiro caractere\n\n# Mostre o último caractere\n\n# Fatiamento para 'linguagem'\n\n# Fatiamento para 'na'"
+          "codigoPreEscrito": "altura = 1.70\nidade=16\n\n# Exemplo: a saída será TRUE\nprint(altura >= 1.70 and idade < 20)\n\n# A saída será FALSE\nprint(altura >= 1.70 ____ idade ___ 20)\n\n# A saída será FALSE\nprint(altura == 1.70 ____ idade > 16)\n\n# A saída será TRUE\nprint(altura ___ 1.70 and idade ____ 16)\n\n# A saída será TRUE\nprint(altura >= 1.70 ____ idade ___ 10)\n\n"
         },
         {
-          "id": "2.4",
+          "id": "3.4",
           "type": "theory",
-          "title": "Entrada e saída de dados",
+          "title": "Operadores de identidade e de associação",
           "gamma": "https://python-literais-j8y3gk3.gamma.site/",
           "video": "https://player.vimeo.com/video/123456789"
         },
 
         {
-          "id": "2.4.1",
+          "id": "3.3.1",
           "type": "practice",
-          "title": "Prática: Saudação personalizada.",
-          "problemStatement": "No código ao lado, substitua o ____________ por <b> uma variável </b> que receba o nome digitado pelo usuário usando a função <i>input</i>.\n",
-          "respostaEsperada": "Seja bem-vindo(a) <conteúdo da variável nome>",
-          "codigoPreEscrito": "# Variável recebe o comando do input \n ____________ = input(\"Informe o seu nome\")\n\n# Complete abaixo o print \n\n print(\"Seja bem-vindo(a)\", ____________)",
-          "inputInteractivo": true
-        }
-        ,
-
-        {
-          "id": "2.4.3",
-          "type": "practice",
-          "title": "Prática: Alimento preferido.",
-          "problemStatement": "Use input() para perguntar ao usuário qual é sua comida favorita. Lembre-se de guardar o valor em uma variável! \n Em seguida, mostre a frase <i>Sua comida favorita é </i> seguida da variável digitada pelo usuário.",
-          "respostaEsperada": "Sua comida favorita é <conteúdo da variável comida>",
-          "codigoPreEscrito": "# Digite abaixo a variável comida recebendo o comando do input()\n\n# Digite abaixo o print apresentando o valor da variável comida",
-          "inputInteractivo": true
+          "title": "Prática: Testando os operadores.",
+          "problemStatement": "Complete o código ao lado colocando os operadores and e or, depois, verifique as saídas. Siga o código de exemplo.",
+          "respostaEsperada": "a\nn\nlinguagem\nna",
+          "codigoPreEscrito": "altura = 1.70\nidade=16\n\n# Exemplo: a saída será TRUE\nprint(altura >= 1.70 and idade < 20)\n\n# A saída será FALSE\nprint(altura >= 1.70 ____ idade ___ 20)\n\n# A saída será FALSE\nprint(altura == 1.70 ____ idade > 16)\n\n# A saída será TRUE\nprint(altura ___ 1.70 and idade ____ 16)\n\n# A saída será TRUE\nprint(altura >= 1.70 ____ idade ___ 10)\n\n"
         }
       ]
     }
