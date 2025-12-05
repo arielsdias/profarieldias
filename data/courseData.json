@@ -1,0 +1,236 @@
+{
+  "modules": [
+    {
+      "title": "Módulo 1: Fundamentos da Programação",
+      "topics": [
+        {
+          "id": "1.1",
+          "type": "theory",
+          "title": "Pensamento Computacional",
+          "gamma": "https://introducao-python-hydl3k5.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+        {
+          "id": "1.2",
+          "type": "theory",
+          "title": "Sistema Operacional e Algoritmo",
+          "gamma": "https://introducao-python-hydl3k5.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+        {
+          "id": "1.1.1",
+          "type": "practice",
+          "title": "Prática: Olá, Mundo!",
+          "problemStatement": "Aqui começa o caminho do verdadeiro desenvolvedor!\n\n- Crie um programa que exiba exatamente:\nOlá, Mundo!\n\nDica: Digite\nprint(\"Olá, mundo!\")\ne depois clique no botão Executar Código.",
+          "respostaEsperada": "Olá, Mundo!"
+        }
+      ]
+    },
+
+
+
+    {
+      "title": "Módulo 2: Noções Básicas de Python",
+      "topics": [
+        {
+          "id": "2.1",
+          "type": "theory",
+          "title": "Declarações, atribuições e comentários",
+          "gamma": "https://introducao-python-hydl3k5.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+        {
+          "id": "2.1.1",
+          "type": "practice",
+          "title": "Prática: Primeiro código Python!",
+          "problemStatement": "É hora de rodar seu primeiro código Python!\n\nDigite:\nprint(5 + 2)\n\nClique em Executar Código.",
+          "respostaEsperada": "7"
+        },
+
+        {
+          "id": "2.1.2",
+          "type": "practice",
+          "title": "Prática: Comentando código.",
+          "problemStatement": "Observe o código já carregado no editor. Comente todas as linhas.\nDepois clique em Executar Código.",
+          "respostaEsperada": "Sou programador!!",
+          "codigoPreEscrito": "print(\"comente com hashtag\")\nprint(\"Sou programador!!\")\nprint(\"comente essa linha com aspas triplas\")\nprint(\"comente essa linha com aspas triplas\")"
+        },
+
+        {
+          "id": "2.1.3",
+          "type": "practice",
+          "title": "Prática: Atribuição de variáveis.",
+          "problemStatement": "Crie uma variável chamada ano com valor 2026.\nEm seguida, use print(ano).\nLembre-se: '=' faz atribuição.",
+          "respostaEsperada": "2026",
+          "codigoPreEscrito": "# Crie a variável ano\n____\n\n# Mostre o valor\n____"
+        },
+
+        {
+          "id": "2.2",
+          "type": "theory",
+          "title": "Literais Numéricos em Python",
+          "gamma": "https://python-literais-numerico-34ytocb.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+
+        {
+          "id": "2.2.1",
+          "type": "practice",
+          "title": "Prática: Tipos numéricos e base.",
+          "problemStatement": "Crie variáveis numéricas nas bases binária, octal e hexadecimal, além de float e complex.\nImprima cada valor e seu tipo.",
+          "respostaEsperada": "13 23 162 3.75 (4+2j)\n<class 'int'>\n<class 'int'>\n<class 'int'>\n<class 'float'>\n<class 'complex'>\n162",
+          "codigoPreEscrito": "a = 0b1101\n# Crie b, c, d, e\n\n# Imprima tudo na mesma linha\n\n# Mostre o tipo de cada variável\n\n# Converta c para decimal"
+        },
+
+        {
+          "id": "2.3",
+          "type": "theory",
+          "title": "Literais String e Especiais",
+          "gamma": "https://python-literais-j8y3gk3.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+
+        {
+          "id": "2.3.1",
+          "type": "practice",
+          "title": "Prática: Tipos String.",
+          "problemStatement": "Dada a string:\n\nmensagem = \"avançando na linguagem Python\"\n\n1. Mostre o primeiro caractere\n2. Mostre o último caractere\n3. Extraia somente a palavra 'linguagem'\n4. Extraia somente a palavra 'na'",
+          "respostaEsperada": "a\nn\nlinguagem\nna",
+          "codigoPreEscrito": "mensagem = \"avançando na linguagem Python\"\n\n# Mostre o primeiro caractere\n\n# Mostre o último caractere\n\n# Fatiamento para 'linguagem'\n\n# Fatiamento para 'na'"
+        },
+        {
+          "id": "2.4",
+          "type": "theory",
+          "title": "Entrada e saída de dados",
+          "gamma": "https://python-literais-j8y3gk3.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+
+        {
+          "id": "2.4.1",
+          "type": "practice",
+          "title": "Prática: Saudação personalizada.",
+          "problemStatement": "No código ao lado, substitua o ____________ por <b> uma variável </b> que receba o nome digitado pelo usuário usando a função <i>input</i>.\n",
+          "respostaEsperada": "Seja bem-vindo(a) <conteúdo da variável nome>",
+          "codigoPreEscrito": "# Variável recebe o comando do input \n ____________ = input(\"Informe o seu nome\")\n\n# Complete abaixo o print \n\n print(\"Seja bem-vindo(a)\", ____________)",
+          "inputInteractivo": true
+        }
+        ,
+
+        {
+          "id": "2.4.3",
+          "type": "practice",
+          "title": "Prática: Alimento preferido.",
+          "problemStatement": "Use input() para perguntar ao usuário qual é sua comida favorita. Lembre-se de guardar o valor em uma variável! \n Em seguida, mostre a frase <i>Sua comida favorita é </i> seguida da variável digitada pelo usuário.",
+          "respostaEsperada": "Sua comida favorita é <conteúdo da variável comida>",
+          "codigoPreEscrito": "# Digite abaixo a variável comida recebendo o comando do input()\n\n# Digite abaixo o print apresentando o valor da variável comida",
+          "inputInteractivo": true
+        }
+      ]
+    },
+
+
+    {
+      "title": "Módulo 3: Operadores",
+      "topics": [
+        {
+          "id": "3.1",
+          "type": "theory",
+          "title": "Operadores aritméticos",
+          "gamma": "https://introducao-python-hydl3k5.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+        {
+          "id": "3.1.1",
+          "type": "practice",
+          "title": "Prática: Cálculo da área",
+          "problemStatement": "Uma sala comercial possuí 10 metros de largura por 8 metros de comprimento. Considerando a fómula <b> area = largura * comprimento </b>, complete os __________ do código ao lado com código em Python para calcular a área dessa sala comercial. \n\n\n <b> Utilize os valores citados no enunciado! </b>",
+          "respostaEsperada": "80",
+          "codigoPreEscrito": "largura = ____\n___________ = 8\nareaTotal = ___________ * ____________\nprint(areatotal)",
+          "inputInteractivo": false
+
+        },
+
+        {
+          "id": "3.1.2",
+          "type": "practice",
+          "title": "Prática: Cálculos com variáveis.",
+          "problemStatement": "Agora você vai criar uma variável chamada <b>poupanca</b>, vamos começar a economizar! \n\n Quanto dinheiro você teria economizado daqui a <b>quatro meses</b> se economizasse R$ 10 por mês? \n\n <h3> Instrução </h3> \n ->Crie uma variável investimento (sem acento) igual a 10 e outra variável num_meses igual a 4. \n->Multiplique monthly_savings por num_months e atribua o resultado a new_savings.\n->Imprima o valor da poupanca.",
+          "respostaEsperada": "Sou programador!!",
+          "codigoPreEscrito": "print(\"comente com hashtag\")\nprint(\"Sou programador!!\")\nprint(\"comente essa linha com aspas triplas\")\nprint(\"comente essa linha com aspas triplas\")"
+        },
+
+        {
+          "id": "2.1.3",
+          "type": "practice",
+          "title": "Prática: Atribuição de variáveis.",
+          "problemStatement": "Crie uma variável chamada ano com valor 2026.\nEm seguida, use print(ano).\nLembre-se: '=' faz atribuição.",
+          "respostaEsperada": "2026",
+          "codigoPreEscrito": "# Crie a variável ano\n____\n\n# Mostre o valor\n____"
+        },
+
+        {
+          "id": "2.2",
+          "type": "theory",
+          "title": "Literais Numéricos em Python",
+          "gamma": "https://python-literais-numerico-34ytocb.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+
+        {
+          "id": "2.2.1",
+          "type": "practice",
+          "title": "Prática: Tipos numéricos e base.",
+          "problemStatement": "Crie variáveis numéricas nas bases binária, octal e hexadecimal, além de float e complex.\nImprima cada valor e seu tipo.",
+          "respostaEsperada": "13 23 162 3.75 (4+2j)\n<class 'int'>\n<class 'int'>\n<class 'int'>\n<class 'float'>\n<class 'complex'>\n162",
+          "codigoPreEscrito": "a = 0b1101\n# Crie b, c, d, e\n\n# Imprima tudo na mesma linha\n\n# Mostre o tipo de cada variável\n\n# Converta c para decimal"
+        },
+
+        {
+          "id": "2.3",
+          "type": "theory",
+          "title": "Literais String e Especiais",
+          "gamma": "https://python-literais-j8y3gk3.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+
+        {
+          "id": "2.3.1",
+          "type": "practice",
+          "title": "Prática: Tipos String.",
+          "problemStatement": "Dada a string:\n\nmensagem = \"avançando na linguagem Python\"\n\n1. Mostre o primeiro caractere\n2. Mostre o último caractere\n3. Extraia somente a palavra 'linguagem'\n4. Extraia somente a palavra 'na'",
+          "respostaEsperada": "a\nn\nlinguagem\nna",
+          "codigoPreEscrito": "mensagem = \"avançando na linguagem Python\"\n\n# Mostre o primeiro caractere\n\n# Mostre o último caractere\n\n# Fatiamento para 'linguagem'\n\n# Fatiamento para 'na'"
+        },
+        {
+          "id": "2.4",
+          "type": "theory",
+          "title": "Entrada e saída de dados",
+          "gamma": "https://python-literais-j8y3gk3.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+
+        {
+          "id": "2.4.1",
+          "type": "practice",
+          "title": "Prática: Saudação personalizada.",
+          "problemStatement": "No código ao lado, substitua o ____________ por <b> uma variável </b> que receba o nome digitado pelo usuário usando a função <i>input</i>.\n",
+          "respostaEsperada": "Seja bem-vindo(a) <conteúdo da variável nome>",
+          "codigoPreEscrito": "# Variável recebe o comando do input \n ____________ = input(\"Informe o seu nome\")\n\n# Complete abaixo o print \n\n print(\"Seja bem-vindo(a)\", ____________)",
+          "inputInteractivo": true
+        }
+        ,
+
+        {
+          "id": "2.4.3",
+          "type": "practice",
+          "title": "Prática: Alimento preferido.",
+          "problemStatement": "Use input() para perguntar ao usuário qual é sua comida favorita. Lembre-se de guardar o valor em uma variável! \n Em seguida, mostre a frase <i>Sua comida favorita é </i> seguida da variável digitada pelo usuário.",
+          "respostaEsperada": "Sua comida favorita é <conteúdo da variável comida>",
+          "codigoPreEscrito": "# Digite abaixo a variável comida recebendo o comando do input()\n\n# Digite abaixo o print apresentando o valor da variável comida",
+          "inputInteractivo": true
+        }
+      ]
+    }
+  ]
+}
