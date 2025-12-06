@@ -3,7 +3,7 @@
 header("Content-Type: text/html; charset=UTF-8");
 
 // Pega a rota acessada, ex: /sobre
-$rota = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+$rota = "/" . ($_GET["rota"] ?? "");
 
 // Pega parâmetros da URL, ex: ?nome=Ariel
 $parametros = $_GET;
