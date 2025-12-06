@@ -51,3 +51,25 @@ if ($rota === "/boasvindas") {
 
 // /dobro?valor=10
 if ($rota === "/dobro") {
+    if (!isset($parametros["valor"]) || !is_numeric($parametros["valor"])) {
+        echo "Erro: informe um número válido em ?valor=";
+        exit;
+    }
+
+    $valor = (int)$parametros["valor"];
+    echo "O dobro de $valor é " . ($valor * 2);
+    exit;
+}
+
+// /maiuscula?texto=ola mundo
+if ($rota === "/maiuscula") {
+    $texto = $parametros["texto"] ?? "";
+    echo "Texto em maiúsculas: " . strtoupper($texto);
+    exit;
+}
+
+// ===============================
+// ROTA NÃO ENCONTRADA (404)
+// ===============================
+http_response_code(404);
+echo "404 - Rota não encontrada";
