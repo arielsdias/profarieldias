@@ -61,42 +61,73 @@ function saveState() {
 /* ============================================================
    SIDEBAR
 ============================================================ */
+let openModules = new Set();
+
 function renderSidebar() {
     const modulesList = document.getElementById("modulesList");
     modulesList.innerHTML = "";
 
-    courseData.modules.forEach(mod => {
-        const moduleDiv = document.createElement("div");
-        moduleDiv.innerHTML =
-            `<div class="p-4 bg-slate-100 font-semibold border-b">${mod.title}</div>`;
+courseData.modules.forEach(mod => {
 
-        mod.topics.forEach(topic => {
-            const isDone = completed.has(topic.id);
+    const moduleWrapper = document.createElement("div");
 
-            const topicDiv = document.createElement("div");
-            topicDiv.className =
-                "p-3 pl-6 flex gap-3 items-center cursor-pointer transition hover:bg-slate-50";
+    // Cabeçalho da sanfona
+    const header = document.createElement("div");
+    header.className = "p-4 bg-slate-100 font-semibold border-b cursor-pointer flex justify-between items-center";
+    header.innerHTML = `
+        <span>${mod.title}</span>
+        <i data-lucide="chevron-down"></i>
+    `;
 
-            topicDiv.innerHTML = `
-                <i data-lucide="${isDone ? "check-circle" : ""}"
-                   class="w-5 h-5 ${isDone ? "text-green-600" : ""}"></i>
+    // Conteúdo da sanfona (lista de tópicos)
+    const topicsContainer = document.createElement("div");
+    topicsContainer.className = openModules.has(mod.title)
+        ? "block"
+        : "hidden";
 
-                <i data-lucide="${topic.type === "theory" ? "book-open" : "code"}"
-                   class="w-4 h-4"></i>
+    // Evento do clique ABRIR/FECHAR módulo
+    header.onclick = () => {
+        if (openModules.has(mod.title)) {
+            openModules.delete(mod.title);
+            topicsContainer.classList.add("hidden");
+        } else {
+            openModules.add(mod.title);
+            topicsContainer.classList.remove("hidden");
+        }
+    };
 
-                <span>${topic.title}</span>
-            `;
+    // Criar tópicos dentro da sanfona
+    mod.topics.forEach(topic => {
+        const isDone = completed.has(topic.id);
 
-            topicDiv.onclick = () => {
-                loadTopic(topic);
-                renderSidebar();
-            };
+        const topicDiv = document.createElement("div");
+        topicDiv.className =
+            "p-3 pl-6 flex gap-3 items-center cursor-pointer transition hover:bg-slate-50";
 
-            moduleDiv.appendChild(topicDiv);
-        });
+        topicDiv.innerHTML = `
+            <i data-lucide="${isDone ? "check-circle" : ""}"
+                class="w-5 h-5 ${isDone ? "text-green-600" : ""}"></i>
 
-        modulesList.appendChild(moduleDiv);
+            <i data-lucide="${topic.type === "theory"
+                     ? "book-open"
+                     : "code"}"
+               class="w-4 h-4"></i>
+
+            <span>${topic.title}</span>
+        `;
+
+        // Clique no tópico NÃO mexe na sanfona
+        topicDiv.onclick = () => loadTopic(topic);
+
+        topicsContainer.appendChild(topicDiv);
     });
+
+    moduleWrapper.appendChild(header);
+    moduleWrapper.appendChild(topicsContainer);
+
+    modulesList.appendChild(moduleWrapper);
+});
+
 
     lucide.createIcons();
 }
