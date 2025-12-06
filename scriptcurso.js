@@ -4,7 +4,7 @@
 let courseData = null;
 
 async function loadCourseData() {
-    const response = await fetch("/data/courseData.json");
+    const response = await fetch("./data/courseData.json");
     courseData = await response.json();
 
     renderSidebar();
