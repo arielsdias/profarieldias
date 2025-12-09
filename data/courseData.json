@@ -125,6 +125,14 @@
           "respostaEsperada": "Sua comida favorita é <conteúdo da variável comida>",
           "codigoPreEscrito": "# Digite abaixo a variável comida recebendo o comando do input()\n\n# Digite abaixo o print apresentando o valor da variável comida",
           "inputInteractivo": true
+        },
+        {
+          "id": "2.4.4",
+          "type": "practice",
+          "title": "Correção de Erros: Variável inexistente.",
+          "problemStatement": "O código ao lado deveria calcular a área de um retângulo, mas contém um erro que impede a execução. Corrija o código para que a área seja calculada corretamente.",
+          "respostaEsperada": "A área é 40",
+          "codigoPreEscrito": "# Código com erro\nlargura = 8\naltura = 5\narea = largua * altura \n\nprint(\"A área é\", area)"
         }
       ]
     },
@@ -223,6 +231,108 @@
           "problemStatement": "Complete o código ao lado colocando os operadores and e or, depois, verifique as saídas. Siga o código de exemplo.",
           "respostaEsperada": "a\nn\nlinguagem\nna",
           "codigoPreEscrito": "altura = 1.70\nidade=16\n\n# Exemplo: a saída será TRUE\nprint(altura >= 1.70 and idade < 20)\n\n# A saída será FALSE\nprint(altura >= 1.70 ____ idade ___ 20)\n\n# A saída será FALSE\nprint(altura == 1.70 ____ idade > 16)\n\n# A saída será TRUE\nprint(altura ___ 1.70 and idade ____ 16)\n\n# A saída será TRUE\nprint(altura >= 1.70 ____ idade ___ 10)\n\n"
+        },
+
+        {
+          "id": "3.3.2",
+          "type": "practice",
+          "title": "Prática: Pesquisa em string.",
+          "problemStatement": "No código ao lado, crie instruções utilizando o operador de associação in para que realize as seguintes pesquisas na string. Pesquisas a serem realizadas: \n\n<b> 1 -> </b> A palavra 'Python' está presente na frase?\n<b> 2 -> </b> A palavra 'difícil' aparece na frase?\n<b> 3 -> </b> A letra 'a' aparece na frase?\n<b> 4 -> </b> A expressão 'poderosa e fácil' aparece na frase?\n<b> 5 -> </b> A palavra 'python', minúscula, aparece na frase?\n\n<i>Dica: pense sobre diferenciação entre maiúsculas e minúsculas</i>",
+          "respostaEsperada": "True\nFalse\nTrue\nFalse\nFalse",
+          "codigoPreEscrito": "frase=\"\"\"A linguagem Python é poderosa e \nfácil de aprender. Estou me divertindo \nmuito com Python!\"\"\"\n\n# Código para a pesquisa 1\n\n# Código para a pesquisa 2\n\n# Código para a pesquisa 3\n\n# Código para a pesquisa 4\n\n# Código para a pesquisa 5\n\n"
+        },
+        {
+          "id": "3.3.4",
+          "type": "practice",
+          "title": "Correção de Erros: Operador errado.",
+          "problemStatement": "O código deveria calcular o IMC corretamente, mas está usando o operador errado. Corrija o código para gerar o valor correto do IMC com duas casas decimais.",
+          "respostaEsperada": "Seu IMC é 22.49",
+          "codigoPreEscrito": "# Código com erro\npeso = 70\naltura = 1.76\nimc = peso * altura  # ERRO: operação deve ser divisão por altura ao quadrado\n\nprint(f\"Seu IMC é {imc:.2f}\")"
+        }
+      ]
+    }
+
+
+    ,
+    {
+      "title": "Módulo 4: Controle de fluxo",
+      "topics": [
+        {
+          "id": "4.1",
+          "type": "theory",
+          "title": "Estrutura condicional",
+          "gamma": "https://introducao-python-hydl3k5.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
+        },
+        {
+          "id": "4.1.1",
+          "type": "practice",
+          "title": "Prática: Gasto mensal.",
+          "problemStatement": "Prática: No código ao lado, temos uma variável salário que recebe o valor R$ 5000. Complete o código de modo a saber <b>se o valor gasto no mês está fora do orçamento</b>, ou seja, se o gasto é maior que o salário; ou <b>se o valor gasto está dentro do orçamento</b>.",
+          "respostaEsperada": "O valor R$ 2800 é menor que o salário de R$ 5000 , então o gasto está dentro do orçamento.",
+          "codigoPreEscrito": "salario = 5000\ngasto = 2800\nif ________ ___ _________:\n    print(\"O valor R$\",_________,\"é menor que o salário de R$\",_________,\", então o gasto está dentro do orçamento.\")",
+          "inputInteractivo": false
+
+        },
+
+        {
+          "id": "4.1.2",
+          "type": "practice",
+          "title": "Prática: Calculando gorjeta.",
+          "problemStatement": "O código ao lado é responsável por calcular a gorjeta em um restaurante. Se o valor total da conta for menor que R$ 120,00, a gorjeta ao garçom será de 10% deste total. Porém, se o valor for maior ou igual a R$ 120,00, então a gorjeta será de 13% do total da conta. \n\nComplete o código ao lado de modo que o código calcule corretamente a gorjeta.",
+          "respostaEsperada": "O valor da gorjeta será de R$ 39.00",
+          "codigoPreEscrito": "# Variáveis\ntotalConta = 300\nif _________ ___ __________:\n    gorjeta = 1.10 * ________\nelse:\n    gorjeta = _____ * totalConta\n\nprint(f\"O valor da gorjeta ao garçom será de R$ {_________:.__}\")"
+        },
+
+        {
+          "id": "4.1.3",
+          "type": "practice",
+          "title": "Prática: Calculando desconto.",
+          "problemStatement": "Uma loja oferece 5% de desconto para compras abaixo de R$ 200,00 e 10% de desconto para compras iguais ou superiores a esse valor. Complete o código para aplicar corretamente o desconto e exibir o valor final.",
+          "respostaEsperada": "O valor final da compra será de R$ 270.00",
+          "codigoPreEscrito": "# Variáveis\nvalorCompra = 300\nif valorCompra < ________:\n    desconto = 0.05 * __________\nelse:\n    desconto = ______ * valorCompra\n\nvalorFinal = valorCompra - desconto\nprint(f\"O valor final da compra será de R$ {valorFinal:.2f}\")"
+        }
+        ,
+        {
+          "id": "4.1.4",
+          "type": "practice",
+          "title": "Prática: Verificando maioridade.",
+          "problemStatement": "O programa deve verificar se uma pessoa é maior de idade. Se a idade for 18 ou mais, exiba 'Você é maior de idade'. Caso contrário, exiba 'Você é menor de idade'. Complete o código.",
+          "respostaEsperada": "Você é maior de idade",
+          "codigoPreEscrito": "# Variáveis\nidade = 20\nif idade ___ _____:\n    print(\"Você é maior de idade\")\nelse:\n    print(\"Você é menor de idade\")"
+        }
+        ,
+        {
+          "id": "4.1.5",
+          "type": "practice",
+          "title": "Prática: Calculando IMC.",
+          "problemStatement": "O IMC, ou Índice de Massa Corporal, é calculado dividindo o peso pela altura ao quadrado. Complete o código abaixo para calcular o IMC, exibir o valor com duas casas decimais e, em seguida, apresentar uma classificação básica:\n\n- IMC < 18.5: Abaixo do peso\n- 18.5 ≤ IMC < 25: Peso normal\n- 25 ≤ IMC < 30: Sobrepeso\n- IMC ≥ 30: Obesidade",
+          "respostaEsperada": "Seu IMC é 24.69\nClassificação: Peso normal",
+          "codigoPreEscrito": "# Variáveis\npeso = 68\naltura = 1.66\nimc = ______ / (______ ** __)\n\nprint(f\"Seu IMC é {imc:.2f}\")\n\nif imc < 18.5:\n    print(\"Classificação: Abaixo do peso\")\nelif ____ __ _____:\n    print(\"Classificação: Peso normal\")\nelif ____ < _____:\n    print(\"Classificação: Sobrepeso\")\nelse:\n    print(\"Classificação: Obesidade\")"
+        },
+        {
+          "id": "4.1.6",
+          "type": "practice",
+          "title": "Prática: Classificando temperatura.",
+          "problemStatement": "A variável temperatura representa a temperatura atual em graus Celsius. Complete o código abaixo para classificar o clima:\n\n- Menor que 15: Frio\n- Entre 15 e 25: Agradável\n- Maior ou igual a 25: Calor",
+          "respostaEsperada": "Clima: Agradável",
+          "codigoPreEscrito": "# Variáveis\ntemperatura = 20\n\nif temperatura __ _____:\n    print(\"Clima: Frio\")\nelif temperatura __ _____:\n    print(\"Clima: Agradável\")\nelse:\n    print(\"Clima: Calor\")"
+        },
+        {
+          "id": "4.1.7",
+          "type": "practice",
+          "title": "Prática: Radar de velocidade.",
+          "problemStatement": "Um radar registra a velocidade de um carro. Se a velocidade for até 80 km/h, não há multa. Entre 81 e 100 km/h, a multa é leve. Acima de 100 km/h, a multa é grave. Complete o código.",
+          "respostaEsperada": "Resultado: Multa leve",
+          "codigoPreEscrito": "# Variáveis\nvelocidade = 95\n\nif velocidade __ _____:\n    print(\"Resultado: Sem multa\")\nelif velocidade <= _____:\n    print(\"Resultado: Multa leve\")\nelse:\n    print(\"Resultado: Multa grave\")"
+        },
+        {
+          "id": "4.1.8",
+          "type": "practice",
+          "title": "Correção de Erros: Condicional incorreta.",
+          "problemStatement": "O código deveria verificar se a idade corresponde a um adulto, mas a condição está incorreta. Corrija o código para que a classificação funcione adequadamente.",
+          "respostaEsperada": "Você é adulto",
+          "codigoPreEscrito": "# Código com erro\nidade = 25\n\nif idade > 18:\nprint(\"Você é adulto\")   # ERRO: falta indentação\nelse\n    print(\"Você é menor de idade\")  # ERRO: falta ':'"
         }
       ]
     }
