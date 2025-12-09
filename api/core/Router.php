@@ -1,57 +1,67 @@
 <?php
 
-class Router {
+class Router
+{
+    private $routes = [
+        "GET" => [],
+        "POST" => [],
+        "DELETE" => [],
+        "PATCH" => []
+    ];
 
-    private $routes = [];
-
-    public function add($method, $path, $handler) {
-        $this->routes[] = [
-            'method' => strtoupper($method),
-            'path' => $path,
-            'handler' => $handler
-        ];
+    // ======================
+    // REGISTRO DE ROTAS
+    // ======================
+    public function get($path, $handler)
+    {
+        $this->routes["GET"][] = ["path" => $path, "handler" => $handler];
     }
 
-    public function get($path, $handler) {
-        $this->add('GET', $path, $handler);
+    public function post($path, $handler)
+    {
+        $this->routes["POST"][] = ["path" => $path, "handler" => $handler];
     }
 
-    public function post($path, $handler) {
-        $this->add('POST', $path, $handler);
+    public function delete($path, $handler)
+    {
+        $this->routes["DELETE"][] = ["path" => $path, "handler" => $handler];
     }
 
-    public function put($path, $handler) {
-        $this->add('PUT', $path, $handler);
+    public function patch($path, $handler)
+    {
+        $this->routes["PATCH"][] = ["path" => $path, "handler" => $handler];
     }
 
-    public function delete($path, $handler) {
-        $this->add('DELETE', $path, $handler);
-    }
+    // ======================
+    // EXECUTAR A ROTA
+    // ======================
+    public function run()
+    {
+        $method = $_SERVER["REQUEST_METHOD"];
+        $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
-    public function dispatch($requestUri, $requestMethod) {
+        // Remove /profarieldias/api/public da URL (ajuste do subdiretório)
+        $base = "/profarieldias/api/public";
+        if (str_starts_with($uri, $base)) {
+            $uri = substr($uri, strlen($base));
+        }
 
-        $requestMethod = strtoupper($requestMethod);
+        foreach ($this->routes[$method] as $route) {
 
-        foreach ($this->routes as $route) {
-
-            // Verifica se o método bate (GET/POST/etc)
-            if ($route['method'] !== $requestMethod) {
-                continue;
-            }
-
-            // Converte rotas com parâmetros para regex
-            $pattern = preg_replace('#\{([a-zA-Z_]+)\}#', '(?P<$1>[0-9]+)', $route['path']);
+            $pattern = preg_replace('#\{[^/]+\}#', '([^/]+)', $route["path"]);
             $pattern = "#^" . $pattern . "$#";
 
-            if (preg_match($pattern, $requestUri, $matches)) {
+            if (preg_match($pattern, $uri, $matches)) {
+                array_shift($matches);
 
-                // Mantém apenas parâmetros nomeados
-                $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
+                [$controller, $methodName] = $route["handler"];
+                $instance = new $controller;
 
-                return call_user_func_array($route['handler'], $params);
+                return call_user_func_array([$instance, $methodName], $matches);
             }
         }
 
+        // ROTA NÃO ENCONTRADA
         http_response_code(404);
         echo json_encode(["error" => "Endpoint não encontrado"]);
     }
