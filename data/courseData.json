@@ -333,6 +333,13 @@
           "problemStatement": "O código deveria verificar se a idade corresponde a um adulto, mas a condição está incorreta. Corrija o código para que a classificação funcione adequadamente.",
           "respostaEsperada": "Você é adulto",
           "codigoPreEscrito": "# Código com erro\nidade = 25\n\nif idade > 18:\nprint(\"Você é adulto\")   # ERRO: falta indentação\nelse\n    print(\"Você é menor de idade\")  # ERRO: falta ':'"
+        },
+                {
+          "id": "4.1",
+          "type": "theory",
+          "title": "Estrutura condicional",
+          "gamma": "https://introducao-python-hydl3k5.gamma.site/",
+          "video": "https://player.vimeo.com/video/123456789"
         }
       ]
     }
