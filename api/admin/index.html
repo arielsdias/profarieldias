@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Painel Administrativo — Cursos</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+    .card { @apply bg-white shadow rounded-lg p-5 border border-slate-200; }
+    .btn { @apply px-4 py-2 rounded font-semibold text-sm; }
+    .btn-primary { @apply bg-blue-600 text-white hover:bg-blue-700; }
+    .btn-danger { @apply bg-red-600 text-white hover:bg-red-700; }
+    .btn-secondary { @apply bg-gray-600 text-white hover:bg-gray-700; }
+</style>
+</head>
+
+<body class="bg-slate-100 min-h-screen">
+
+<!-- HEADER -->
+<header class="bg-white shadow px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Administração de Cursos</h1>
+</header>
+
+<main class="p-6 grid grid-cols-3 gap-6">
+
+<!-- ============================================
+     SEÇÃO: CURSOS
+============================================ -->
+<div class="card col-span-1">
+    <h2 class="text-xl font-bold mb-4">Cursos</h2>
+
+    <ul id="listaCursos" class="space-y-2"></ul>
+
+    <button onclick="abrirFormCurso()" class="btn btn-primary mt-4 w-full">
+        + Adicionar Curso
+    </button>
+</div>
+
+<!-- ============================================
+     SEÇÃO: MÓDULOS
+============================================ -->
+<div class="card col-span-1">
+    <h2 class="text-xl font-bold mb-4">
+        Módulos do Curso Selecionado
+    </h2>
+
+    <p id="cursoSelecionado" class="text-sm text-slate-500 mb-3">Nenhum curso selecionado.</p>
+
+    <ul id="listaModulos" class="space-y-2"></ul>
+
+    <button id="btnAddModulo" onclick="abrirFormModulo()" class="btn btn-primary mt-4 w-full hidden">
+        + Adicionar Módulo
+    </button>
+</div>
+
+<!-- ============================================
+     SEÇÃO: TÓPICOS
+============================================ -->
+<div class="card col-span-1">
+    <h2 class="text-xl font-bold mb-4">Tópicos do Módulo Selecionado</h2>
+
+    <p id="moduloSelecionado" class="text-sm text-slate-500 mb-3">Nenhum módulo selecionado.</p>
+
+    <ul id="listaTopicos" class="space-y-2"></ul>
+
+    <button id="btnAddTopico" onclick="abrirFormTopico()" class="btn btn-primary mt-4 w-full hidden">
+        + Adicionar Tópico
+    </button>
+</div>
+
+</main>
+
+
+<!-- ============================================================
+     MODAL DE FORMULÁRIOS DINÂMICOS
+============================================================ -->
+<div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-lg p-6 shadow-xl">
+        <h3 id="modalTitulo" class="text-xl font-bold mb-4"></h3>
+
+        <form id="modalForm" class="space-y-3"></form>
+
+        <div class="mt-6 flex justify-end gap-3">
+            <button onclick="fecharModal()" class="btn btn-secondary">Cancelar</button>
+            <button onclick="salvarModal()" class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+// ============================
+// VARIÁVEIS DE CONTEXTO
+// ============================
+let cursoAtual = null;
+let moduloAtual = null;
+let entidadeEdicao = null; // curso | modulo | topico
+let objetoEdicao = null;
+
+// ============================
+// CARREGAR CURSOS
+// ============================
+async function carregarCursos() {
+    const res = await fetch("/v1/cursos");
+    const cursos = await res.json();
+    const lista = document.getElementById("listaCursos");
+
+    lista.innerHTML = "";
+
+    cursos.forEach(c => {
+        const li = document.createElement("li");
+        li.className = "p-3 bg-slate-50 rounded border cursor-pointer hover:bg-slate-100 flex justify-between";
+
+        li.innerHTML = `
+            <span onclick="selecionarCurso(${c.id_curso}, '${c.titulo}')">
+                ${c.titulo}
+            </span>
+            <button class="btn btn-danger" onclick="deletarCurso(${c.id_curso})">Excluir</button>
+        `;
+
+        lista.appendChild(li);
+    });
+}
+
+carregarCursos();
+
+
+// ============================
+// SELEÇÃO DE CURSO
+// ============================
+async function selecionarCurso(id, titulo) {
+    cursoAtual = id;
+    document.getElementById("cursoSelecionado").textContent = titulo;
+    document.getElementById("btnAddModulo").classList.remove("hidden");
+    moduloAtual = null;
+
+    carregarModulos(id);
+    document.getElementById("listaTopicos").innerHTML = "";
+    document.getElementById("btnAddTopico").classList.add("hidden");
+}
+
+// ============================
+// CARREGAR MÓDULOS
+// ============================
+async function carregarModulos(idCurso) {
+    const res = await fetch(`/v1/cursos/${idCurso}/modulos`);
+    const modulos = await res.json();
+    const lista = document.getElementById("listaModulos");
+
+    lista.innerHTML = "";
+
+    modulos.forEach(m => {
+        const li = document.createElement("li");
+        li.className = "p-3 bg-slate-50 rounded border cursor-pointer hover:bg-slate-100 flex justify-between";
+
+        li.innerHTML = `
+            <span onclick="selecionarModulo(${m.id_modulo}, '${m.titulo}')">${m.titulo}</span>
+            <button class="btn btn-danger" onclick="deletarModulo(${m.id_modulo})">Excluir</button>
+        `;
+
+        lista.appendChild(li);
+    });
+}
+
+
+// ============================
+// SELEÇÃO DE MÓDULO
+// ============================
+function selecionarModulo(id, titulo) {
+    moduloAtual = id;
+    document.getElementById("moduloSelecionado").textContent = titulo;
+    document.getElementById("btnAddTopico").classList.remove("hidden");
+    carregarTopicos(id);
+}
+
+// ============================
+// CARREGAR TÓPICOS
+// ============================
+async function carregarTopicos(idModulo) {
+    const res = await fetch(`/v1/modulos/${idModulo}/topicos`);
+    const topicos = await res.json();
+    const lista = document.getElementById("listaTopicos");
+
+    lista.innerHTML = "";
+
+    topicos.forEach(t => {
+        const li = document.createElement("li");
+        li.className = "p-3 bg-slate-50 rounded border flex justify-between";
+
+        li.innerHTML = `
+            <span>${t.titulo} — <em>${t.tipo}</em></span>
+            <button class="btn btn-danger" onclick="deletarTopico(${t.id_topico})">Excluir</button>
+        `;
+
+        lista.appendChild(li);
+    });
+}
+
+
+// ============================
+// FORMULÁRIOS DINÂMICOS
+// ============================
+function abrirFormCurso() {
+    entidadeEdicao = "curso";
+    objetoEdicao = null;
+
+    abrirModal("Novo Curso", `
+        <input type="text" id="titulo" placeholder="Título do curso" class="w-full p-2 border rounded">
+        <textarea id="descricao" placeholder="Descrição" class="w-full p-2 border rounded"></textarea>
+        <input type="number" id="carga" placeholder="Carga horária" class="w-full p-2 border rounded">
+    `);
+}
+
+function abrirFormModulo() {
+    entidadeEdicao = "modulo";
+    objetoEdicao = null;
+
+    abrirModal("Novo Módulo", `
+        <input type="text" id="titulo" placeholder="Título do módulo" class="w-full p-2 border rounded">
+        <input type="number" id="ordem" placeholder="Ordem" class="w-full p-2 border rounded">
+    `);
+}
+
+function abrirFormTopico() {
+    entidadeEdicao = "topico";
+    objetoEdicao = null;
+
+    abrirModal("Novo Tópico", `
+        <input type="text" id="titulo" placeholder="Título do tópico" class="w-full p-2 border rounded">
+        <select id="tipo" class="w-full border p-2 rounded">
+            <option value="theory">Teoria</option>
+            <option value="practice">Prática</option>
+        </select>
+        <input type="text" id="codigo" placeholder="Código interno" class="w-full p-2 border rounded">
+        <input type="number" id="ordem" placeholder="Ordem" class="w-full p-2 border rounded">
+    `);
+}
+
+
+// ============================
+// ABRIR / FECHAR MODAL
+// ============================
+function abrirModal(titulo, htmlForm) {
+    document.getElementById("modalTitulo").textContent = titulo;
+    document.getElementById("modalForm").innerHTML = htmlForm;
+
+    document.getElementById("modal").classList.remove("hidden");
+    document.getElementById("modal").classList.add("flex");
+}
+
+function fecharModal() {
+    document.getElementById("modal").classList.add("hidden");
+    document.getElementById("modal").classList.remove("flex");
+}
+
+
+// ============================
+// SALVAR FORMULÁRIOS
+// ============================
+async function salvarModal() {
+    if (entidadeEdicao === "curso") {
+        await fetch("/v1/cursos", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                titulo: document.getElementById("titulo").value,
+                descricao: document.getElementById("descricao").value,
+                carga_horaria: document.getElementById("carga").value
+            })
+        });
+        carregarCursos();
+    }
+
+    if (entidadeEdicao === "modulo") {
+        await fetch(`/v1/cursos/${cursoAtual}/modulos`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                titulo: document.getElementById("titulo").value,
+                ordem: document.getElementById("ordem").value
+            })
+        });
+        carregarModulos(cursoAtual);
+    }
+
+    if (entidadeEdicao === "topico") {
+        await fetch(`/v1/modulos/${moduloAtual}/topicos`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                titulo: document.getElementById("titulo").value,
+                tipo: document.getElementById("tipo").value,
+                codigo: document.getElementById("codigo").value,
+                ordem: document.getElementById("ordem").value
+            })
+        });
+        carregarTopicos(moduloAtual);
+    }
+
+    fecharModal();
+}
+
+
+// ============================
+// EXCLUSÃO
+// ============================
+async function deletarCurso(id) {
+    if (!confirm("Deseja excluir o curso?")) return;
+
+    await fetch(`/v1/cursos/${id}`, { method: "DELETE" });
+    carregarCursos();
+}
+
+async function deletarModulo(id) {
+    if (!confirm("Excluir módulo e tópicos relacionados?")) return;
+
+    await fetch(`/v1/modulos/${id}`, { method: "DELETE" });
+    carregarModulos(cursoAtual);
+}
+
+async function deletarTopico(id) {
+    if (!confirm("Excluir tópico?")) return;
+
+    await fetch(`/v1/topicos/${id}`, { method: "DELETE" });
+    carregarTopicos(moduloAtual);
+}
+
+</script>
+
+</body>
+</html>
