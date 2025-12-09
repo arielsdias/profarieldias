@@ -1,26 +1,63 @@
 <?php
 
-require_once "../core/Database.php";
-require_once "../core/Request.php";
-require_once "../core/Response.php";
-require_once "../core/Router.php";
+header("Content-Type: application/json; charset=UTF-8");
 
-require_once "../models/CursoModel.php";
-require_once "../models/ModuloModel.php";
-require_once "../models/TopicoModel.php";
-require_once "../models/AlunoModel.php";
-require_once "../models/ProgressoModel.php";
+// Autoload simples
+require_once __DIR__ . '/../core/Router.php';
+require_once __DIR__ . '/../core/Database.php';
 
-require_once "../controllers/CursoController.php";
-require_once "../controllers/ModuloController.php";
-require_once "../controllers/TopicoController.php";
-require_once "../controllers/AlunoController.php";
-require_once "../controllers/ProgressoController.php";
+// Controllers
+require_once __DIR__ . '/../controllers/CursoController.php';
+require_once __DIR__ . '/../controllers/ModuloController.php';
+require_once __DIR__ . '/../controllers/TopicoController.php';
+require_once __DIR__ . '/../controllers/AlunoController.php';
+require_once __DIR__ . '/../controllers/ProgressoController.php';
 
-$req = new Request();
 $router = new Router();
 
-require "../routes/routes.php";
+// ==========================
+// ROTAS — CURSOS
+// ==========================
+$router->get('/v1/cursos', [CursoController::class, 'list']);
 
-// despacha rota
-$router->dispatch($req);
+$router->post('/v1/cursos', [CursoController::class, 'create']);
+
+$router->get('/v1/cursos/{id}', [CursoController::class, 'get']);
+
+$router->delete('/v1/cursos/{id}', [CursoController::class, 'delete']);
+
+$router->get('/v1/cursos/{id}/modulos', [ModuloController::class, 'listByCurso']);
+
+$router->post('/v1/cursos/{id}/modulos', [ModuloController::class, 'create']);
+
+
+// ==========================
+// ROTAS — MÓDULOS
+// ==========================
+$router->get('/v1/modulos/{id}/topicos', [TopicoController::class, 'listByModulo']);
+
+$router->post('/v1/modulos/{id}/topicos', [TopicoController::class, 'create']);
+
+$router->delete('/v1/modulos/{id}', [ModuloController::class, 'delete']);
+
+
+// ==========================
+// ROTAS — TÓPICOS
+// ==========================
+$router->delete('/v1/topicos/{id}', [TopicoController::class, 'delete']);
+
+
+// ==========================
+// ROTAS — ALUNO
+// ==========================
+$router->post('/v1/alunos', [AlunoController::class, 'create']);
+
+$router->post('/v1/alunos/login', [AlunoController::class, 'login']);
+
+$router->get('/v1/alunos/{id}/cursos', [AlunoController::class, 'listarCursos']);
+
+
+// ==========================
+// EXECUTAR ROTEAMENTO
+// ==========================
+$router->run();
