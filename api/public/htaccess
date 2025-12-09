@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Garantir que o .htaccess só funcione se mod_rewrite estiver ativado
+<IfModule mod_rewrite.c>
+    RewriteBase /profarieldias/api/public/
+
+    # Se o arquivo ou diretório existir, usa ele
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Caso contrário, envia a requisição para index.php
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
