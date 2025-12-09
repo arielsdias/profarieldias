@@ -39,7 +39,7 @@ function getJsonBody() {
 }
 
 // ============================
-// ROTAS BÁSICAS nó
+// ROTAS BÁSICAS
 // ?resource=curso&action=create
 // ============================
 $resource = $_GET['resource'] ?? null;
@@ -453,7 +453,7 @@ try {
 
 } catch (InvalidArgumentException $e) {
     http_response_code(400);
-    echo json_encode(['erro' => $e->getMessage()]);
+    echo json_encode(['errox' => $e->getMessage()]);
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode(['erro' => 'Erro interno', 'detalhe' => $e->getMessage()]);
