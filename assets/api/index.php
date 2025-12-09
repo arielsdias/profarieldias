@@ -39,7 +39,7 @@ function getJsonBody() {
 }
 
 // ============================
-// ROTAS BÁSICAS
+// ROTAS BÁSICAS nó
 // ?resource=curso&action=create
 // ============================
 $resource = $_GET['resource'] ?? null;
