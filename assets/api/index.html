@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Painel Administrativo – Cursos</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        padding: 30px;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .card {
+        background: white;
+        padding: 20px;
+        box-shadow: 0 0 5px #ccc;
+        border-radius: 6px;
+        margin-bottom: 30px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 6px 0 15px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #0056b3;
+    }
+    .success {
+        color: green;
+        margin-top: 10px;
+    }
+    .error {
+        color: red;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Painel Administrativo – Cursos, Módulos e Tópicos</h1>
+
+<!-- ============================
+      CADASTRO DE CURSO
+=============================== -->
+<div class="card">
+    <h2>Cadastrar Curso</h2>
+    <label>Título do Curso</label>
+    <input type="text" id="curso_titulo">
+
+    <label>Descrição</label>
+    <textarea id="curso_desc"></textarea>
+
+    <label>Carga Horária</label>
+    <input type="number" id="curso_carga">
+
+    <button onclick="criarCurso()">Salvar Curso</button>
+    <div id="curso_msg"></div>
+</div>
+
+<!-- ============================
+      CADASTRO DE MÓDULO
+=============================== -->
+<div class="card">
+    <h2>Cadastrar Módulo</h2>
+
+    <label>Curso (opcional)</label>
+    <select id="modulo_curso">
+        <option value="">— Nenhum curso —</option>
+    </select>
+
+    <label>Título do Módulo</label>
+    <input type="text" id="modulo_titulo">
+
+    <label>Ordem (opcional)</label>
+    <input type="number" id="modulo_ordem" value="1">
+
+    <button onclick="criarModulo()">Salvar Módulo</button>
+    <div id="modulo_msg"></div>
+</div>
+
+<!-- ============================
+      CADASTRO DE TÓPICO
+=============================== -->
+<div class="card">
+    <h2>Cadastrar Tópico</h2>
+
+    <label>Módulo (opcional)</label>
+    <select id="topico_modulo">
+        <option value="">— Nenhum módulo —</option>
+    </select>
+
+    <label>Código</label>
+    <input type="text" id="topico_codigo">
+
+    <label>Título</label>
+    <input type="text" id="topico_titulo">
+
+    <label>Tipo</label>
+    <select id="topico_tipo">
+        <option value="theory">Teoria</option>
+        <option value="practice">Prática</option>
+    </select>
+
+    <div id="teoria_fields">
+        <label>Link Gamma</label>
+        <input type="text" id="topico_gamma">
+
+        <label>Link Vídeo</label>
+        <input type="text" id="topico_video">
+    </div>
+
+    <div id="pratica_fields" style="display:none;">
+        <label>Enunciado</label>
+        <textarea id="topico_problem"></textarea>
+
+        <label>Resposta Esperada</label>
+        <textarea id="topico_resposta"></textarea>
+
+        <label>Código Pré-Escrito</label>
+        <textarea id="topico_codigo_pre"></textarea>
+
+        <label>Input Interativo?</label>
+        <select id="topico_input_interativo">
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+        </select>
+    </div>
+
+    <button onclick="criarTopico()">Salvar Tópico</button>
+    <div id="topico_msg"></div>
+</div>
+
+
+<script>
+const API = "https://www.arieldias.com.br/profarieldias/api/index.php"; 
+// Trocar pela URL real do seu backend PHP
+
+// =========================================
+// CARREGAR CURSOS E MÓDULOS NO INÍCIO
+// =========================================
+window.onload = function () {
+    carregarCursos();
+    carregarModulosSemFiltro();
+};
+
+// =========================================
+// TOGGLE EXIBIÇÃO DOS CAMPOS DE PRÁTICA
+// =========================================
+document.getElementById("topico_tipo").addEventListener("change", function() {
+    if (this.value === "theory") {
+        document.getElementById("teoria_fields").style.display = "block";
+        document.getElementById("pratica_fields").style.display = "none";
+    } else {
+        document.getElementById("teoria_fields").style.display = "none";
+        document.getElementById("pratica_fields").style.display = "block";
+    }
+});
+
+
+// =========================================
+// CADASTRAR CURSO
+// =========================================
+async function criarCurso() {
+    const data = {
+        titulo: document.getElementById("curso_titulo").value,
+        descricao: document.getElementById("curso_desc").value,
+        carga_horaria: document.getElementById("curso_carga").value
+    };
+
+    let res = await fetch(`${API}?resource=curso&action=create`, {
+        method: "POST",
+        body: JSON.stringify(data)
+    });
+
+    let json = await res.json();
+    document.getElementById("curso_msg").innerHTML = "<p class='success'>Curso criado! ID: " + json.id_curso + "</p>";
+    carregarCursos();
+}
+
+
+// =========================================
+// CARREGAR CURSOS NO DROPDOWN
+// =========================================
+async function carregarCursos() {
+    let res = await fetch(`${API}?resource=curso&action=list`);
+    let cursos = await res.json();
+
+    let select = document.getElementById("modulo_curso");
+    select.innerHTML = `<option value="">— Nenhum curso —</option>`;
+
+    cursos.forEach(c => {
+        select.innerHTML += `<option value="${c.id_curso}">${c.titulo}</option>`;
+    });
+}
+
+
+// =========================================
+// CADASTRAR MÓDULO
+// =========================================
+async function criarModulo() {
+    const data = {
+        id_curso: document.getElementById("modulo_curso").value || null,
+        titulo: document.getElementById("modulo_titulo").value,
+        ordem: document.getElementById("modulo_ordem").value
+    };
+
+    let res = await fetch(`${API}?resource=modulo&action=create`, {
+        method: "POST",
+        body: JSON.stringify(data)
+    });
+
+    let json = await res.json();
+    document.getElementById("modulo_msg").innerHTML = "<p class='success'>Módulo criado! ID: " + json.id_modulo + "</p>";
+
+    carregarModulosSemFiltro();
+}
+
+
+// =========================================
+// CARREGAR MÓDULOS SEM FILTRO
+// =========================================
+async function carregarModulosSemFiltro() {
+    let modulosSelect = document.getElementById("topico_modulo");
+    modulosSelect.innerHTML = `<option value="">— Nenhum módulo —</option>`;
+
+    // Primeiro pega os cursos
+    let resCursos = await fetch(`${API}?resource=curso&action=list`);
+    let cursos = await resCursos.json();
+
+    for (let curso of cursos) {
+        let resMod = await fetch(`${API}?resource=modulo&action=listByCurso&id_curso=${curso.id_curso}`);
+        let modulos = await resMod.json();
+
+        modulos.forEach(m => {
+            modulosSelect.innerHTML += `<option value="${m.id_modulo}">${m.titulo} (Curso: ${curso.titulo})</option>`;
+        });
+    }
+}
+
+
+// =========================================
+// CADASTRAR TÓPICO
+// =========================================
+async function criarTopico() {
+    const tipo = document.getElementById("topico_tipo").value;
+
+    const baseData = {
+        id_modulo: document.getElementById("topico_modulo").value || null,
+        codigo: document.getElementById("topico_codigo").value,
+        titulo: document.getElementById("topico_titulo").value,
+        tipo: tipo
+    };
+
+    if (tipo === "theory") {
+        baseData.link_gamma = document.getElementById("topico_gamma").value;
+        baseData.link_video = document.getElementById("topico_video").value;
+    } else {
+        baseData.problem_statement = document.getElementById("topico_problem").value;
+        baseData.resposta_esperada = document.getElementById("topico_resposta").value;
+        baseData.codigo_pre_escrito = document.getElementById("topico_codigo_pre").value;
+        baseData.input_interativo = document.getElementById("topico_input_interativo").value;
+    }
+
+    let res = await fetch(`${API}?resource=topico&action=create`, {
+        method: "POST",
+        body: JSON.stringify(baseData)
+    });
+
+    let json = await res.json();
+    document.getElementById("topico_msg").innerHTML = "<p class='success'>Tópico criado! ID: " + json.id_topico + "</p>";
+}
+</script>
+
+</body>
+</html>
