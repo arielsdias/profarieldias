@@ -340,7 +340,58 @@
           "title": "Estrutura de repetição",
           "gamma": "https://introducao-python-hydl3k5.gamma.site/",
           "video": "https://player.vimeo.com/video/123456789"
+        },
+        {
+          "id": "4.2.1",
+          "type": "practice",
+          "title": "Prática: Contando números.",
+          "problemStatement": "Complete o código para exibir os números de 1 até 5 usando a estrutura de repetição for.",
+          "respostaEsperada": "1\n2\n3\n4\n5",
+          "codigoPreEscrito": "for numero in _______(1, ____):\n    print(numero)",
+          "inputInteractivo": false
+        },
+        {
+          "id": "4.2.2",
+          "type": "practice",
+          "title": "Prática: Somando valores com for.",
+          "problemStatement": "Complete o código para calcular a soma dos números de 1 até 10 usando a estrutura for.",
+          "respostaEsperada": "A soma é 55",
+          "codigoPreEscrito": "soma = 0\n\nfor numero in range(1, ____):\n    soma = soma + _______\n\nprint(\"A soma é\", soma)",
+          "inputInteractivo": false
+        },
+        {
+          "id": "4.2.3",
+          "type": "practice",
+          "title": "Prática: Contando números pares.",
+          "problemStatement": "Complete o código para exibir apenas os números pares entre 1 e 10 usando for e uma estrutura condicional.",
+          "respostaEsperada": "2\n4\n6\n8\n10",
+          "codigoPreEscrito": "for numero in range(1, 11):\n    if numero ___ 2 == ____:\n        print(numero)",
+          "inputInteractivo": false
+        },
+        {
+          "id": "4.2.4",
+          "type": "practice",
+          "title": "Debug Challenge: Contando vogais em uma frase.",
+          "problemStatement": "Um aprendiz de mago precisa descobrir quantas vogais existem em uma frase para ativar um feitiço. O código abaixo deveria percorrer a string e contar as vogais, mas contém erros de lógica e de sintaxe. Corrija o código para que a contagem funcione corretamente.",
+          "respostaEsperada": "Quantidade de vogais: 8",
+          "codigoPreEscrito": "# Frase mágica\nfrase = \"python é divertido\"\nvogais = \"aeiou\"\ncontador = 0\n\nfor letra in frase\n    if letra in vogais:\n        contador = contador + 1\n\nprint(\"Quantidade de vogais:\", contador)",
+          "inputInteractivo": false
+        },
+        {
+          "id": "4.2.5",
+          "type": "practice",
+          "title": "Debug Challenge: O Código Perdido do Arquimago.",
+          "problemStatement": "O Arquimago deixou um código que deveria analisar uma frase secreta. O programa deve percorrer a string e contar:\n\n- Quantas vogais existem\n- Quantas consoantes existem\n\nPorém, o código contém alguns erros de sintaxe e lógica. Corrija o código para que ele funcione corretamente e revele o resultado final.",
+          "respostaEsperada": "Vogais: 5\nConsoantes: 8",
+          "codigoPreEscrito": "# Frase secreta do Arquimago\nfrase = \"python é mágico\"\nvogais = \"aeiou\"\n\nvogaisCont = 0\nconsoantesCont = 0\n\nfor letra in frase   \n    if letra in vogais:\n        vogaisCont = vogaisCont + 1\n    elif letra != \" \" and letra in vogais:  \n        consoantesCont = consoantesCont + 1\n\nprint(\"Vogais:\", vogaisCont)\nprint(\"Consoantes:\", consoantesCont)",
+          "inputInteractivo": false
         }
+
+
+       
+
+
+
       ]
     }
   ]
